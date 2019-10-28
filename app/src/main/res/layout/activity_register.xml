@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fillViewport="false">
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="Create Account"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/multilinetext_bg"
+        android:drawableStart="@drawable/ic_profile"
+        android:drawableLeft="@drawable/ic_profile"
+        android:drawablePadding="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+       />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/multilinetext_bg"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawableLeft="@drawable/ic_phone"
+        android:drawablePadding="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="number"
+         />
+
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_email"
+        android:background="@drawable/multilinetext_bg"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+         />
+
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/multilinetext_bg"
+        android:drawableStart="@drawable/ic_password"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawablePadding="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        />
+
+
+       <Space
+           android:layout_width="wrap_content"
+           android:layout_height="20dp"/>
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/multilinetext_bg"
+        android:drawableStart="@drawable/ic_password"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/mybutton"
+        android:text="Sign Up"
+        android:textColor="#ffffff" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="Already have an account? Login." />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+</LinearLayout>
+
+</ScrollView>

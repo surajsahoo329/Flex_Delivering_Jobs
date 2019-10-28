@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:fillViewport="false">
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    tools:context="com.example.flex.ContactsFragment">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="65dp"
+        android:layout_gravity="center"
+        android:layout_height="65dp"
+        android:src="@mipmap/ic_launcher" />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:text="flex"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24dp"
+        android:textStyle="italic|bold" />
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/ivCall"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_img_phone"
+            />
+
+        <ImageView
+            android:id="@+id/ivGmail"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_gmail"
+            />
+
+        <ImageView
+            android:id="@+id/ivWhatsapp"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_whatsapp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/tvCall"
+            android:layout_width="80dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Call"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:id="@+id/tvGmail"
+            android:layout_width="80dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textColor="#000"
+            android:text="Gmail"
+            />
+
+        <TextView
+            android:id="@+id/tvWhatsapp"
+            android:layout_width="80dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textColor="#000"
+            android:text="Whatsapp"
+            />
+
+    </LinearLayout>
+
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        ></View>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawableLeft="@drawable/ic_phone"
+        android:gravity="center"
+        android:textColor="#000"
+        android:text="+91-7978753612      "
+        />
+
+    <TextView
+        android:id="@+id/tvAltPhone1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:textColor="#000"
+        android:text="+91-9348075636"
+        />
+
+    <TextView
+        android:id="@+id/tvAltPhone2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:textColor="#000"
+        android:text="+91-9937340986"
+        />
+
+    <TextView
+        android:id="@+id/tvAltPhone3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:textColor="#000"
+        android:text="+91-7008825084"
+        />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        ></View>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableStart="@drawable/ic_email"
+        android:drawableLeft="@drawable/ic_email"
+        android:textColor="#000"
+        android:text="surajsahoo329bbsr@gmail.com"
+        />
+
+   <TextView
+        android:id="@+id/tvAltEmail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:text="sahilnayak101@gmail.com"
+         />
+
+    <TextView
+        android:id="@+id/tvAltEmail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:text="gyaneswarsingh53@gmail.com"
+        />
+
+    <TextView
+        android:id="@+id/tvAltEmail3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:text="hapi181096@gmail.com"
+        />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        ></View>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:autoLink="web"
+        android:drawableStart="@drawable/ic_location"
+        android:drawableLeft="@drawable/ic_location"
+        android:textColor="#000"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Bhubaneswar, Odisha"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        ></View>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+</LinearLayout>
+</ScrollView>

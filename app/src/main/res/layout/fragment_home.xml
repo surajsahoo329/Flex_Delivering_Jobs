@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/view2"
+            app:cardCornerRadius="10dp"
+            android:layout_gravity="center"
+            android:innerRadius="0dp"
+            android:background="@drawable/selector"
+            app:strokeColor="#000"
+            app:strokeWidth="@dimen/cardview_compat_inset_shadow"
+            android:shape="ring"
+            android:thicknessRatio="1.9">
+
+                 <androidx.recyclerview.widget.RecyclerView
+
+                        android:layout_width="match_parent"
+                        android:id="@+id/recyclerView"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal"
+                        android:layout_height="150dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="Book your slots "
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/multilinetext_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:drawableStart="@drawable/ic_date"
+            android:drawableLeft="@drawable/ic_date"
+            android:drawablePadding="5dp"
+            android:inputType="date"
+            android:focusableInTouchMode="false"
+            android:text="  Choose date"
+            android:textColor="#000" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/multilinetext_bg"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_start_time"
+            />
+
+
+        <Spinner
+            android:id="@+id/spStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:background="@drawable/multilinetext_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_end_time"
+                    />
+
+        <Spinner
+            android:id="@+id/spWorkHours"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/btnBookSlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:text="book your slot" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tvInvisibleDate"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>
