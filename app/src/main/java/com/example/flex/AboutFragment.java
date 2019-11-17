@@ -30,37 +30,14 @@ public class AboutFragment extends Fragment {
         View parentHolder=inflater.inflate(R.layout.fragment_about, container,
                 false);
 
-        ImageView btnFacebook = (ImageView) parentHolder.findViewById(R.id.ivFacebook);
-        ImageView btnGithub = (ImageView) parentHolder.findViewById(R.id.ivGithub);
-        ImageView btnTwitter = (ImageView) parentHolder.findViewById(R.id.ivTwitter);
+        ImageView btnGithub=parentHolder.findViewById(R.id.ivGithub);
 
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Uri uri = Uri.parse("https://www.facebook.com/suraj.k.sahoo.7");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-
-            }
-        });
 
         btnGithub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Uri uri = Uri.parse("https://github.com/surajsahoo329");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-
-            }
-        });
-
-        btnTwitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Uri uri = Uri.parse("https://twitter.com/SurajKu10047843");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
 

@@ -114,7 +114,8 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SEND FEEDBACK" />
+        android:text="Send Feedback"
+        android:textAllCaps="false" />
 
     <Space
         android:layout_width="match_parent"
@@ -128,7 +129,8 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="VIEW FEEDBACK" />
+        android:text="View Feedback"
+        android:textAllCaps="false" />
 
 
     <Space

@@ -217,6 +217,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
+            android:textAllCaps="false"
             android:text="Submit"
             android:textColor="#ffffff" />
         
@@ -231,6 +232,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
+            android:textAllCaps="false"
             android:text="View License Details"
             android:textColor="#ffffff" />
 

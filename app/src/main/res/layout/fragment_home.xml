@@ -145,7 +145,8 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
             android:textColor="#ffffff"
-            android:text="book your slot" />
+            android:text="Book Your Slot"
+            android:textAllCaps="false" />
 
         <Space
             android:layout_width="match_parent"

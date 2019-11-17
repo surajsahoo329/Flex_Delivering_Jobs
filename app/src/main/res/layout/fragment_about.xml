@@ -124,32 +124,16 @@
         >
 
         <ImageView
-            android:id="@+id/ivFacebook"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/ic_facebook"
-            />
-
-        <ImageView
             android:id="@+id/ivGithub"
             android:layout_width="80dp"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
             android:src="@drawable/ic_github"
             />
 
-        <ImageView
-            android:id="@+id/ivTwitter"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_twitter" />
-
     </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
 
 </LinearLayout>
 </ScrollView>

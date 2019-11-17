@@ -75,6 +75,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
+            android:textAllCaps="false"
             android:text="Save Changes"
             android:textColor="#ffffff" />
 
@@ -88,8 +89,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:text="Change Password"
             android:background="@drawable/mybutton"
-            android:text="change password"
+            android:textAllCaps="false"
             android:textColor="#ffffff" />
 
         <Space

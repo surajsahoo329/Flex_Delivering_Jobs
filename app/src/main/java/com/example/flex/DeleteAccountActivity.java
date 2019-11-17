@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,8 +59,8 @@ public class DeleteAccountActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         parentLayout = findViewById(android.R.id.content);
-        Button btnDeleteAccount = (Button)findViewById(R.id.btnConfirmDeleteAccount);
-        etDeletePass = (EditText) findViewById(R.id.etDeletePassword);
+        Button btnDeleteAccount=findViewById(R.id.btnConfirmDeleteAccount);
+        etDeletePass=findViewById(R.id.etDeletePassword);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -175,7 +174,7 @@ public class DeleteAccountActivity extends AppCompatActivity {
 
                                                         pd.dismiss();
                                                     }
-                                                });//Feedback Database deleted
+                                                });//Slot Database deleted
 
                                                 Query histQuery=hisRef.orderByChild("userMail").equalTo(uEmail);
 
