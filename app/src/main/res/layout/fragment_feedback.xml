@@ -148,19 +148,33 @@
         android:textSize="24dp"
         android:textStyle="bold|italic" />
 
-    <Space
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        card_view:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvSetRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:background="@drawable/multilinetext_bg"
-        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="start|left"
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"
         android:visibility="gone"
         android:textColor="#000"
         />
@@ -169,18 +183,22 @@
         android:id="@+id/tvSetComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/multilinetext_bg"
-        android:padding="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_gravity="center"
         android:visibility="gone"
         android:textColor="#000"
         />
 
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="40dp" />
 
 
 </LinearLayout>

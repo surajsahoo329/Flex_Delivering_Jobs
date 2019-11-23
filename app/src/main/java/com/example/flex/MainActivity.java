@@ -2,9 +2,11 @@ package com.example.flex;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +34,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -35,10 +43,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toggle;
     FirebaseAuth auth;
     public  static int flag = 0;
-    TextView tvWelcome;
+    TextView tvWelcome, tvEmail;
     DatabaseReference dbRef,usrRef;
     String uEmail,checkEmail;
-    String id,name;
+    String id, name, getImageUrl;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +58,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         toolbar.setTitle(R.string.app_name);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.background_dark));
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(android.R.color.background_dark));
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
+
+        dbRef=FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        checkEmail=user.getEmail();
+        usrRef=dbRef.child("User");
+
+        final StorageReference mStorageRef=FirebaseStorage.getInstance().getReference();
+        final StorageReference imgRef=mStorageRef.child(checkEmail + "/photo.jpg");
+        final long TEN_MEGABYTES=10024 * 10024;
+
+        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                getImageUrl=uri.toString();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+
+            }
+        });
+
+        imgRef.getBytes(TEN_MEGABYTES).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+
+                Glide.with(MainActivity.this)
+                        .load(getImageUrl)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(imageView);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+
+            }
+        });
+
+
         auth = FirebaseAuth.getInstance();
 
         View hView = navigationView.getHeaderView(0);
-        tvWelcome = (TextView) hView.findViewById(R.id.tvWelcome);
+        tvWelcome=hView.findViewById(R.id.tvWelcome);
+        tvEmail=hView.findViewById(R.id.tvNavEmail);
+        imageView=hView.findViewById(R.id.nav_header_imageView);
 
         View parentLayout = findViewById(android.R.id.content);
 
@@ -109,12 +165,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void getUName() {
 
 
-        dbRef= FirebaseDatabase.getInstance().getReference();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        checkEmail = user.getEmail();
-        usrRef=dbRef.child("User");
-
         ValueEventListener userListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -128,8 +178,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         name = ds.child("userName").getValue(String.class);
                         assert name != null;
-                        String[] firstName=name.trim().split(" +");
-                        tvWelcome.setText("Welcome, "+firstName[0]);
+                        tvWelcome.setText(name);
+                        tvEmail.setText(checkEmail);
                         break;
                     }
 

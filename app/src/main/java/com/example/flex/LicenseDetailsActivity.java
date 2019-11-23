@@ -2,7 +2,6 @@ package com.example.flex;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,7 +41,7 @@ public class LicenseDetailsActivity extends AppCompatActivity {
 
         final ProgressDialog pd = ProgressDialog.show(LicenseDetailsActivity.this,"Loading License Details","Please wait...",true);
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1db945")));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
@@ -51,14 +50,14 @@ public class LicenseDetailsActivity extends AppCompatActivity {
         checkMail = user.getEmail();
         parentLayout = findViewById(android.R.id.content);
 
-        ImageView ivHome = (ImageView) findViewById(R.id.ivHome);
+        ImageView ivHome=findViewById(R.id.ivHome);
 
-        tvDLNumber = (TextView) findViewById(R.id.tvDLNumber);
-        tvName = (TextView) findViewById(R.id.tvDLName);
-        tvDOB = (TextView) findViewById(R.id.tvDOB);
-        tvAddress = (TextView) findViewById(R.id.tvAddress);
-        tvIssueDate = (TextView) findViewById(R.id.tvIssueDate);
-        tvExpiryDate = (TextView) findViewById(R.id.tvExpiryDate);
+        tvDLNumber=findViewById(R.id.tvDLNumber);
+        tvName=findViewById(R.id.tvDLName);
+        tvDOB=findViewById(R.id.tvDOB);
+        tvAddress=findViewById(R.id.tvAddress);
+        tvIssueDate=findViewById(R.id.tvIssueDate);
+        tvExpiryDate=findViewById(R.id.tvExpiryDate);
 
 
         dlRef = dbRef.child("DL");

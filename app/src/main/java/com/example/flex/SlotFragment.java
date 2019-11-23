@@ -2,13 +2,14 @@ package com.example.flex;
 
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class SlotFragment extends Fragment {
 
     private String checkMail, uEmail;
@@ -43,10 +45,11 @@ public class SlotFragment extends Fragment {
     private TextView tvSlotHeading, tvActiveSlots, tvSlotMsg, tvCompany, tvTimings, tvAddress, tvHistory;
     private ImageView ivCompany;
     private RelativeLayout relativeLayout;
-    private LinearLayout linearLayout;
     private ListView historyListViewSlot;
     private Slot historySlot;
     private DatabaseReference historyRef;
+    private ArrayAdapter<Company> adapter;
+    private ListActivity listActivity;
 
     private static final String[] company = new String[] { "Ekart Logistics",
             "Fedex", "Aramex", "Delhivery", "Blue Dart", "DTDC" ,"Indian Post"};
@@ -82,23 +85,26 @@ public class SlotFragment extends Fragment {
         checkMail = user.getEmail();
         assert refActivity != null;
 
-        tvSlotHeading = (TextView) parentHolder.findViewById(R.id.slotHeading);
-        tvSlotMsg = (TextView) parentHolder.findViewById(R.id.noBookingMsg);
-        tvActiveSlots = (TextView) parentHolder.findViewById(R.id.tvActiveSlots);
-        tvHistory = (TextView) parentHolder.findViewById(R.id.historySlot);
-        tvCompany = (TextView) parentHolder.findViewById(R.id.tvCompany);
-        tvTimings = (TextView) parentHolder.findViewById(R.id.tvTimings);
-        tvAddress = (TextView) parentHolder.findViewById(R.id.tvAddress);
-        ivCompany = (ImageView) parentHolder.findViewById(R.id.ivImage);
-        relativeLayout = (RelativeLayout) parentHolder.findViewById(R.id.relLayout);
-        linearLayout = (LinearLayout) parentHolder.findViewById(R.id.historyLinearLayout);
-        historyListViewSlot = (ListView) parentHolder.findViewById(R.id.historyListViewSlot);
+        tvSlotHeading=parentHolder.findViewById(R.id.slotHeading);
+        tvSlotMsg=parentHolder.findViewById(R.id.noBookingMsg);
+        tvActiveSlots=parentHolder.findViewById(R.id.tvActiveSlots);
+        tvHistory=parentHolder.findViewById(R.id.historySlot);
+        tvCompany=parentHolder.findViewById(R.id.tvCompany);
+        tvTimings=parentHolder.findViewById(R.id.tvTimings);
+        tvAddress=parentHolder.findViewById(R.id.tvAddress);
+        ivCompany=parentHolder.findViewById(R.id.ivImage);
+        relativeLayout=parentHolder.findViewById(R.id.relLayout);
+        historyListViewSlot=parentHolder.findViewById(R.id.historyListViewSlot);
 
         companies = new ArrayList<Company>();
+        adapter=new ArrayAdapter<Company>(refActivity,
+                android.R.layout.simple_list_item_1,
+                companies);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("Slot");
         historyRef = database.getReference("History");
+        historyListViewSlot.setVisibility(View.GONE);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -248,7 +254,7 @@ public class SlotFragment extends Fragment {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
-                                                        linearLayout.setVisibility(View.VISIBLE);
+                                                        historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                         int i = historySlot.getSlotFlag();
 
@@ -349,7 +355,7 @@ public class SlotFragment extends Fragment {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
-                                                        linearLayout.setVisibility(View.VISIBLE);
+                                                        historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                         int i = historySlot.getSlotFlag();
 
@@ -417,7 +423,7 @@ public class SlotFragment extends Fragment {
 
                                                     historySlot = ds.getValue(Slot.class);
                                                     tvHistory.setVisibility(View.VISIBLE);
-                                                    linearLayout.setVisibility(View.VISIBLE);
+                                                    historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                     int i = historySlot.getSlotFlag();
 
@@ -567,7 +573,7 @@ public class SlotFragment extends Fragment {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
-                                                        linearLayout.setVisibility(View.VISIBLE);
+                                                        historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                         int i = historySlot.getSlotFlag();
 
@@ -668,7 +674,7 @@ public class SlotFragment extends Fragment {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
-                                                        linearLayout.setVisibility(View.VISIBLE);
+                                                        historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                         int i = historySlot.getSlotFlag();
 
@@ -770,7 +776,7 @@ public class SlotFragment extends Fragment {
 
                                                     historySlot = ds.getValue(Slot.class);
                                                     tvHistory.setVisibility(View.VISIBLE);
-                                                    linearLayout.setVisibility(View.VISIBLE);
+                                                    historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                     int i = historySlot.getSlotFlag();
 
@@ -833,7 +839,7 @@ public class SlotFragment extends Fragment {
 
                                                 historySlot = ds.getValue(Slot.class);
                                                 tvHistory.setVisibility(View.VISIBLE);
-                                                linearLayout.setVisibility(View.VISIBLE);
+                                            historyListViewSlot.setVisibility(View.VISIBLE);
 
                                                 int i = historySlot.getSlotFlag();
 

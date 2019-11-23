@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -114,6 +115,7 @@ public class ProfileFragment extends Fragment {
 
                 Glide.with(ProfileFragment.this)
                         .load(getImageUrl)
+                        .apply(RequestOptions.circleCropTransform())
                         .into(viewPhoto);
 
                 pd.dismiss();
@@ -155,12 +157,12 @@ public class ProfileFragment extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
-        viewPhoto = (ImageView) parentHolder.findViewById(R.id.imageView);
+        viewPhoto=parentHolder.findViewById(R.id.imageView);
 
-        ImageView ivEditProfile=(ImageView) parentHolder.findViewById(R.id.ivEditProfile);
-        ImageView ivChoosePhoto=(ImageView) parentHolder.findViewById(R.id.ivChoosePhoto);
-        ImageView ivDeleteAccount=(ImageView) parentHolder.findViewById(R.id.ivDeleteAccount);
-        ImageView ivUploadPhoto=(ImageView) parentHolder.findViewById(R.id.ivUploadPhoto);
+        ImageView ivEditProfile=parentHolder.findViewById(R.id.ivEditProfile);
+        ImageView ivChoosePhoto=parentHolder.findViewById(R.id.ivChoosePhoto);
+        ImageView ivDeleteAccount=parentHolder.findViewById(R.id.ivDeleteAccount);
+        ImageView ivUploadPhoto=parentHolder.findViewById(R.id.ivUploadPhoto);
 
         final ProgressDialog pd = ProgressDialog.show(refActivity,"Loading account","Please wait...",true);
 
@@ -215,9 +217,9 @@ public class ProfileFragment extends Fragment {
                 }
 
 
-                textViewName=(TextView)parentHolder.findViewById(R.id.tvName);
-                textViewMail=(TextView)parentHolder.findViewById(R.id.tvEmail);
-                textViewPh=(TextView)parentHolder.findViewById(R.id.tvPhone);
+                textViewName=parentHolder.findViewById(R.id.tvName);
+                textViewMail=parentHolder.findViewById(R.id.tvEmail);
+                textViewPh=parentHolder.findViewById(R.id.tvPhone);
 
                 textViewName.setText(uName);
                 textViewPh.setText(uPhone);

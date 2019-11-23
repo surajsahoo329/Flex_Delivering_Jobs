@@ -4,8 +4,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:fillViewport="false">
-<LinearLayout
-    xmlns:tools="http://schemas.android.com/tools"
+
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        card_view:cardCornerRadius="4dp">
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -49,9 +59,7 @@
         android:textColor="#000"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:background="@drawable/multilinetext_bg"
-        android:text="This app has no connection with companies which give delivery jobs. It only connects people with companies who are looking for part-time delivery jobs and is not responsible for payment and other issues.  It is not an official app."
-        />
+        android:text="This app has no connection with companies which give delivery jobs. It only connects people with companies who are looking for part-time delivery jobs and is not responsible for payment and other issues.  It is not an official app." />
 
     <Space
         android:layout_width="match_parent"
@@ -70,7 +78,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="20dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -79,8 +87,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="#000"
-        android:text="Sahil Kumar Nayak"
-        />
+        android:text="Sahil Kumar Nayak" />
 
     <TextView
         android:layout_width="match_parent"
@@ -89,8 +96,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="#000"
-        android:text="Gyaneswar Singh"
-        />
+        android:text="Gyaneswar Singh" />
 
     <TextView
         android:layout_width="match_parent"
@@ -99,8 +105,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="#000"
-        android:text="Sudhansu Sekhar Sahoo"
-        />
+        android:text="Sudhansu Sekhar Sahoo" />
 
     <TextView
         android:layout_width="match_parent"
@@ -109,31 +114,27 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="#000"
-        android:text="Suraj Kumar Sahoo"
-        />
+        android:text="Suraj Kumar Sahoo" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:layout_marginBottom="20dp"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/ivGithub"
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_github"
-            />
+            android:src="@drawable/ic_github" />
 
     </LinearLayout>
 
 </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>

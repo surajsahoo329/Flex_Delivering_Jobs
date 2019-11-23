@@ -86,26 +86,26 @@ public class HomeFragment extends Fragment {
 
         parentLayout=refActivity.findViewById(android.R.id.content);
 
-        final Button btnBookSlot = (Button) parentHolder.findViewById(R.id.btnBookSlot);
+        final Button btnBookSlot=parentHolder.findViewById(R.id.btnBookSlot);
         dbRef = FirebaseDatabase.getInstance().getReference();
         user= FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         checkMail=user.getEmail();
 
-        etDate = (EditText) parentHolder.findViewById(R.id.etDate);
+        etDate=parentHolder.findViewById(R.id.etDate);
 
-        Spinner spStartTime =(Spinner) parentHolder.findViewById(R.id.spStartTime);
+        Spinner spStartTime=parentHolder.findViewById(R.id.spStartTime);
         ArrayAdapter arrStartTime =new ArrayAdapter(refActivity,android.R.layout.simple_list_item_1,startTime);
         spStartTime.setAdapter(arrStartTime);
         spStartTime.setOnItemSelectedListener(new startTimeClick());
 
-        Spinner spWorkHours =(Spinner) parentHolder.findViewById(R.id.spWorkHours);
+        Spinner spWorkHours=parentHolder.findViewById(R.id.spWorkHours);
         ArrayAdapter arrWorkHours =new ArrayAdapter(refActivity,android.R.layout.simple_list_item_1,workHours);
         spWorkHours.setAdapter(arrWorkHours);
         spWorkHours.setOnItemSelectedListener(new workHoursClick());
 
 
-        tvIDate = (TextView) parentHolder.findViewById(R.id.tvInvisibleDate);
+        tvIDate=parentHolder.findViewById(R.id.tvInvisibleDate);
 
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -682,7 +682,7 @@ public class HomeFragment extends Fragment {
         Log.d(TAG,"initRecyclerView: init recyclerView");
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(refActivity,LinearLayoutManager.HORIZONTAL,false);
-        RecyclerView recyclerView = (RecyclerView) parentHolder.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView=parentHolder.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         SnapHelper helper = new LinearSnapHelper();
         helper.attachToRecyclerView(recyclerView);

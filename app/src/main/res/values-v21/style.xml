@@ -5,8 +5,9 @@
     <!-- Customize your theme here. --> <!-- Selectable removes action bar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">#1db945</item>
+        <item name="android:statusBarColor">#1DB945</item>
     </style>
+
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlActivated">#1db945</item>
