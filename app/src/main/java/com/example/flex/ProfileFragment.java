@@ -206,10 +206,9 @@ public class ProfileFragment extends Fragment {
                     if(uEmail.equals(checkEmail)) {
                         uPhone = ds.child("userPhone").getValue(String.class);
                         uName = ds.child("userName").getValue(String.class);
-                        isUploadedPhotoFlag=ds.getValue(Integer.class);
+                        isUploadedPhotoFlag=ds.child("userPhotoFlag").getValue(Integer.class);
                         if(isUploadedPhotoFlag == 1)
                             setImage();
-
                         pd.dismiss();
 
                         break;
