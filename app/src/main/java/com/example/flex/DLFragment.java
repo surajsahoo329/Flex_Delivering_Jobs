@@ -1,6 +1,7 @@
 package com.example.flex;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DownloadManager;
@@ -8,7 +9,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,7 +44,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
@@ -52,9 +51,7 @@ public class DLFragment extends Fragment {
 
     private Activity refActivity;
     private StorageReference mStorageReference;
-    private DatabaseReference dbRef;
-    private DatabaseReference usrRef;
-    private DatabaseReference dlRef;
+    private DatabaseReference dbRef, usrRef, dlRef;
     private ProgressDialog pd;
     private final static int PICK_PDF_CODE=2342;
     private int isUploadedDLFlag=0;
@@ -156,11 +153,6 @@ public class DLFragment extends Fragment {
         parentLayout = refActivity.findViewById(android.R.id.content);
         View parentHolder=inflater.inflate(R.layout.fragment_dl, container, false);
         mStorageReference = FirebaseStorage.getInstance().getReference();
-        DatabaseReference mDatabaseReference=FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
-
-        TextView textView=parentHolder.findViewById(R.id.tvDLTitle);
-        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont1);
 
         etDLNumber=parentHolder.findViewById(R.id.etDLNumber);
         etDLName=parentHolder.findViewById(R.id.etDLName);
@@ -256,6 +248,7 @@ public class DLFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
 
                 datePickerDialog = new DatePickerDialog(refActivity, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 
@@ -308,6 +301,7 @@ public class DLFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
 
                 datePickerDialog = new DatePickerDialog(refActivity, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 
@@ -359,6 +353,7 @@ public class DLFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
 
                 datePickerDialog = new DatePickerDialog(refActivity, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 
@@ -393,7 +388,7 @@ public class DLFragment extends Fragment {
                     }
                 }, year,month,date);
 
-                datePickerDialog.getDatePicker().setMinDate((System.currentTimeMillis()+1*24*60*60*1000L) - 1000);
+                datePickerDialog.getDatePicker().setMinDate((System.currentTimeMillis() + 24 * 60 * 60 * 1000L) - 1000);
 
                 datePickerDialog.show();
 
@@ -506,6 +501,7 @@ public class DLFragment extends Fragment {
 
                                 uemail=ds.child("userMail").getValue(String.class);
 
+                                assert uemail != null;
                                 if (uemail.equals(checkEmail)) {
 
                                     pd.dismiss();
@@ -693,9 +689,11 @@ public class DLFragment extends Fragment {
 
                                     uemail = ds.child("userMail").getValue(String.class);
 
+                                    assert uemail != null;
                                     if (uemail.equals(checkEmail)) {
 
                                         String id = ds.child("userId").getValue(String.class);
+                                        assert id != null;
                                         usrRef.child(id).child("userDLFlag").setValue(1);
                                         break;
                                     }

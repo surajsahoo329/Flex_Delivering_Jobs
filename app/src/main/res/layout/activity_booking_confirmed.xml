@@ -60,6 +60,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:padding="20dp"
+                    android:background="@drawable/multilinetext_bg"
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.card.MaterialCardView
@@ -156,15 +157,6 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ivHouse"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:src="@drawable/ic_home_round" />
-
 
         </LinearLayout>
 </ScrollView>

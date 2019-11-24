@@ -22,7 +22,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"></androidx.recyclerview.widget.RecyclerView>
+            android:orientation="horizontal" />
 
 
         <TextView
@@ -54,8 +54,8 @@
             android:inputType="date"
             android:text="@string/choose_date"
             android:focusableInTouchMode="false"
-            android:textSize="16sp"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:textSize="16sp" />
 
 
         <Space

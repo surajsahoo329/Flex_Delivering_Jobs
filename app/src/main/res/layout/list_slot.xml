@@ -28,6 +28,7 @@
             android:layout_height="75dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/ic_flipkart"
+            android:contentDescription="@string/todo"
             tools:ignore="VectorDrawableCompat" />
 
     </com.google.android.material.card.MaterialCardView>

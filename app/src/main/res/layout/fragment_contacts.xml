@@ -59,6 +59,7 @@
             android:id="@+id/ivWhatsapp"
             android:layout_width="80dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_whatsapp" />
 
     </LinearLayout>

@@ -1,18 +1,14 @@
 package com.example.flex;
 
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-
-import java.util.Objects;
 
 
 /**
@@ -31,14 +27,12 @@ public class AboutFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View parentHolder=inflater.inflate(R.layout.fragment_about, container,
+        /*TextView textView=parentHolder.findViewById(R.id.textViewAbout);
+        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/prod_sans_medium");
+        textView.setTypeface(myFont1);*/ //For Specific text to be changed
+
+        return inflater.inflate(R.layout.fragment_about, container,
                 false);
-
-        TextView textView=parentHolder.findViewById(R.id.textViewAbout);
-        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont1);
-
-        return parentHolder;
 
     }
 

@@ -1,6 +1,8 @@
 package com.example.flex;
 
 
+import androidx.annotation.NonNull;
+
 public class Slot {
 
     private String userMail;
@@ -38,6 +40,7 @@ public class Slot {
 
     public String getShowEndTime() { return showEndTime; }
 
+    @NonNull
     @Override
     public String toString() {
 

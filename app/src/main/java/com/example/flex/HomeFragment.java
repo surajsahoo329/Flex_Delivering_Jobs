@@ -1,12 +1,12 @@
 package com.example.flex;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,7 +44,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -91,10 +90,6 @@ public class HomeFragment extends Fragment {
 
         parentLayout=refActivity.findViewById(android.R.id.content);
 
-        TextView textView=parentHolder.findViewById(R.id.tvHomeTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
-
         final Button btnBookSlot=parentHolder.findViewById(R.id.btnBookSlot);
         dbRef = FirebaseDatabase.getInstance().getReference();
         user= FirebaseAuth.getInstance().getCurrentUser();
@@ -104,12 +99,12 @@ public class HomeFragment extends Fragment {
         etDate=parentHolder.findViewById(R.id.etDate);
 
         Spinner spStartTime=parentHolder.findViewById(R.id.spStartTime);
-        ArrayAdapter arrStartTime =new ArrayAdapter(refActivity,android.R.layout.simple_list_item_1,startTime);
+        ArrayAdapter<String> arrStartTime=new ArrayAdapter<>(refActivity, android.R.layout.simple_list_item_1, startTime);
         spStartTime.setAdapter(arrStartTime);
         spStartTime.setOnItemSelectedListener(new startTimeClick());
 
         Spinner spWorkHours=parentHolder.findViewById(R.id.spWorkHours);
-        ArrayAdapter arrWorkHours =new ArrayAdapter(refActivity,android.R.layout.simple_list_item_1,workHours);
+        ArrayAdapter<String> arrWorkHours=new ArrayAdapter<>(refActivity, android.R.layout.simple_list_item_1, workHours);
         spWorkHours.setAdapter(arrWorkHours);
         spWorkHours.setOnItemSelectedListener(new workHoursClick());
 
@@ -126,6 +121,7 @@ public class HomeFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
 
                 datePickerDialog = new DatePickerDialog(refActivity, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 
@@ -154,7 +150,7 @@ public class HomeFragment extends Fragment {
                         else
                             monthStr = "Dec";
 
-                        etDate.setText("  "+dayOfMonth+"-"+monthStr+"-"+year);
+                        etDate.setText(dayOfMonth + "-" + monthStr + "-" + year);
                         tvIDate.setText(dayOfMonth+"-"+monthStr+"-"+year);
 
                     }
@@ -292,7 +288,7 @@ public class HomeFragment extends Fragment {
                                                 if(checkMail.equals(uEmail)) {
                                                     dlFlag = ds.child("userDLFlag").getValue(Integer.class);
                                                     String date = ds.child("licenseExpiryDate").getValue(String.class);
-                                                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                                                    @SuppressLint("SimpleDateFormat") SimpleDateFormat df=new SimpleDateFormat("dd-MMM-yyyy");
                                                     Date strDate = null;
                                                     try {
                                                         strDate = df.parse(date);

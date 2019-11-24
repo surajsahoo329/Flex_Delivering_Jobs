@@ -1,5 +1,6 @@
 package com.example.flex;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -30,7 +31,7 @@ public class LicenseDetailsDone extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        @SuppressLint("PrivateResource") final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -49,11 +47,6 @@ public class ContactsFragment extends Fragment {
         ImageView ivCall=parentHolder.findViewById(R.id.ivCall);
         ImageView ivGmail=parentHolder.findViewById(R.id.ivGmail);
         ImageView ivWhatsapp=parentHolder.findViewById(R.id.ivWhatsapp);
-
-        TextView textView=parentHolder.findViewById(R.id.textView);
-        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont1);
-
 
         ivCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +86,7 @@ public class ContactsFragment extends Fragment {
                 String contact = "+91 7978753612"; // use country code with your phone number
                 String url = "https://api.whatsapp.com/send?phone=" + contact;
                 try {
-                    PackageManager pm = getContext().getPackageManager();
+                    PackageManager pm=Objects.requireNonNull(getContext()).getPackageManager();
                     pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));

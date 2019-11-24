@@ -1,7 +1,6 @@
 package com.example.flex;
 
-import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import java.util.List;
 
 public class CustomListViewAdapter extends ArrayAdapter<Company> {
 
@@ -31,9 +32,10 @@ public class CustomListViewAdapter extends ArrayAdapter<Company> {
         TextView txtAddress;
     }
 
+    @SuppressLint("InflateParams")
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         Company company =  getItem(position);
 
         LayoutInflater mInflater = (LayoutInflater) context
@@ -41,10 +43,10 @@ public class CustomListViewAdapter extends ArrayAdapter<Company> {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.list_slot, null);
             holder = new ViewHolder();
-            holder.txtCompany = (TextView) convertView.findViewById(R.id.tvCompany);
-            holder.txtTimings = (TextView) convertView.findViewById(R.id.tvTimings);
-            holder.txtAddress = (TextView) convertView.findViewById(R.id.tvAddress);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.ivImage);
+            holder.txtCompany=convertView.findViewById(R.id.tvCompany);
+            holder.txtTimings=convertView.findViewById(R.id.tvTimings);
+            holder.txtAddress=convertView.findViewById(R.id.tvAddress);
+            holder.imageView=convertView.findViewById(R.id.ivImage);
             convertView.setTag(holder);
         } else
             holder = (ViewHolder) convertView.getTag();

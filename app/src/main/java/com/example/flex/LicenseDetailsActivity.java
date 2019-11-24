@@ -1,10 +1,10 @@
 package com.example.flex;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -14,7 +14,6 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,7 +50,7 @@ public class LicenseDetailsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        @SuppressLint("PrivateResource") final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
@@ -59,18 +58,11 @@ public class LicenseDetailsActivity extends AppCompatActivity {
         text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         getSupportActionBar().setTitle(text);
 
-        TextView textView=findViewById(R.id.tvLicenseDetailsTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
-
-
         dbRef = FirebaseDatabase.getInstance().getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         checkMail = user.getEmail();
         parentLayout = findViewById(android.R.id.content);
-
-        ImageView ivHome=findViewById(R.id.ivHome);
 
         tvDLNumber=findViewById(R.id.tvDLNumber);
         tvName=findViewById(R.id.tvDLName);
@@ -135,16 +127,6 @@ public class LicenseDetailsActivity extends AppCompatActivity {
         };
 
         dlRef.addListenerForSingleValueEvent(dlListener);
-
-
-        ivHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(LicenseDetailsActivity.this, MainActivity.class));
-                finish();
-            }
-        });
 
     }
 

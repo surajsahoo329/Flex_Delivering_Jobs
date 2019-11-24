@@ -1,5 +1,7 @@
 package com.example.flex;
 
+import androidx.annotation.NonNull;
+
 public class Company {
 
     private int imageId;
@@ -42,6 +44,8 @@ public class Company {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @NonNull
     @Override
     public String toString() {
         return company+ "\n"+timings+"\n" + address;

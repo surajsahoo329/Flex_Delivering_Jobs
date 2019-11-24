@@ -6,7 +6,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">#1DB945</item>
-        <item name="android:fontFamily">@font/prod_sans_light</item>
+        <item name="android:fontFamily">@font/prod_sans_medium</item>
     </style>
 
 

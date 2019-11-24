@@ -3,7 +3,6 @@ package com.example.flex;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,8 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
-
 public class RegisterActivity extends AppCompatActivity implements ValueEventListener {
 
     EditText etName,etEmail,etPhone,etPassword,etConfirmPassword;
@@ -45,10 +42,6 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        TextView textView=findViewById(R.id.createAccTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
 
         etName=findViewById(R.id.etName);
         etEmail=findViewById(R.id.etEmail);
@@ -263,6 +256,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                                 pd.dismiss();
                                 String id = databaseUser.push().getKey();
                                 User user = new User(id,name,mail,phone,password,DLFlag,PhotoFlag);
+                                assert id != null;
                                 databaseUser.child(id).setValue(user);
                                 registerFlag = 1;
                                 Intent it = new Intent(RegisterActivity.this, LoginActivity.class);

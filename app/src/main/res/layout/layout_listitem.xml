@@ -21,7 +21,7 @@
                 android:id="@+id/imageRecycler"
                 android:src="@drawable/ic_launcher_background"
                 android:scaleType="fitCenter"
-                />
+                android:contentDescription="@string/todo" />
 
         </androidx.cardview.widget.CardView>
 

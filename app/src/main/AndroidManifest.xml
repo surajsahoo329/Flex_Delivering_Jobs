@@ -9,38 +9,52 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="Flex"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LicenseDetailsActivity"></activity>
-        <activity android:name=".LicenseDetailsDone" />
-        <activity android:name=".BookingFailedActivity" />
-        <activity android:name=".BookingConfirmedActivity" />
+        <activity
+            android:name=".LicenseDetailsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".LicenseDetailsDone"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".BookingFailedActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".BookingConfirmedActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ResetPasswordActivity"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".DeleteAccountActivity"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".EditProfileActivity"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".InformationActivity" />
-        <activity android:name=".FirstScreen">
+        <activity
+            android:name=".InformationActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FirstScreen"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ViewPhotoActivity"
             android:icon="@drawable/delivery"
-            android:label="Login"
+            android:label="View Photo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"

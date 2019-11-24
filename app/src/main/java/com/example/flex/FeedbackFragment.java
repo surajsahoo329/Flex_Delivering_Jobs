@@ -1,9 +1,9 @@
 package com.example.flex;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Objects;
 
 
 /**
@@ -61,6 +60,7 @@ public class FeedbackFragment extends Fragment {
         final Activity referenceActivity=getActivity();
         parentHolder = inflater.inflate(R.layout.fragment_feedback, container,
                 false);
+        assert referenceActivity != null;
         parentLayout = referenceActivity.findViewById(android.R.id.content);
 
         Button btnFeedback=parentHolder.findViewById(R.id.btnFeedback);
@@ -68,10 +68,6 @@ public class FeedbackFragment extends Fragment {
         etFeedback=parentHolder.findViewById(R.id.etFeedback);
         tvSetComment=parentHolder.findViewById(R.id.tvSetComment);
         tvSetRating=parentHolder.findViewById(R.id.tvSetRating);
-
-        TextView textView=parentHolder.findViewById(R.id.textView);
-        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont1);
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -90,6 +86,7 @@ public class FeedbackFragment extends Fragment {
                 fdbRef = dbRef.child("Feedback");
 
                 ValueEventListener feedbackListener = new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -101,8 +98,6 @@ public class FeedbackFragment extends Fragment {
                             if (uemail.equals(checkEmail)) {
 
                                 TextView tvReviewHeading=parentHolder.findViewById(R.id.tvRatingTitle);
-                                Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-                                tvReviewHeading.setTypeface(myFont);
                                 LinearLayout linearLayout=parentLayout.findViewById(R.id.linearLayoutFB);
 
 
@@ -281,6 +276,7 @@ public class FeedbackFragment extends Fragment {
          tvComment=view.findViewById(R.id.tvComment);
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
 
@@ -293,34 +289,23 @@ public class FeedbackFragment extends Fragment {
                 String strStars = nf.format(stars);
 
 
-                if(String.valueOf(rating).equals("1.0") || String.valueOf(rating).equals("1.5"))
-                {
+                if(String.valueOf(rating).equals("1.0") || String.valueOf(rating).equals("1.5")) {
                     tvRating.setText("Your Rating : " +strStars+" / 5");
                     tvComment.setText("Ohh ! Please give feedback.");
 
-                }
-                else if(String.valueOf(rating).equals("2.0") || String.valueOf(rating).equals("2.5"))
-                {
+                } else if(String.valueOf(rating).equals("2.0") || String.valueOf(rating).equals("2.5")) {
                     tvRating.setText("Your Rating : " +strStars+" / 5");
                     tvComment.setText("That's poor. Please give feedback.");
-                }
-                else if(String.valueOf(rating).equals("3.0") || String.valueOf(rating).equals("3.5"))
-                {
+                } else if(String.valueOf(rating).equals("3.0") || String.valueOf(rating).equals("3.5")) {
                     tvRating.setText("Your Rating : " +strStars+" / 5");
                     tvComment.setText("Not Good, Not Terrible. Please give feedback.");
-                }
-                else if(String.valueOf(rating).equals("4.0") || String.valueOf(rating).equals("4.5"))
-                {
+                } else if(String.valueOf(rating).equals("4.0") || String.valueOf(rating).equals("4.5")) {
                     tvRating.setText("Your Rating : " +strStars+" / 5");
                     tvComment.setText("Thank you ! Please give feedback.");
-                }
-                else if(String.valueOf(rating).equals("5.0"))
-                {
+                } else if(String.valueOf(rating).equals("5.0")) {
                     tvRating.setText("Your Rating : " +strStars+" / 5");
                     tvComment.setText("We are pleased. Please give feedback and suggestions if any.");
-                }
-                else
-                {
+                } else {
 
                     tvRating.setText("Your Rating : 1 / 5");
                     tvComment.setText("Ohh ! Please give feedback.");

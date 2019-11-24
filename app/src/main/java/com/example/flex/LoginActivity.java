@@ -3,7 +3,6 @@ package com.example.flex;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
 
         etEmailPhone=findViewById(R.id.etEmailPhone);
         tvFont=findViewById(R.id.tvFont);
-        Typeface myFont=Typeface.createFromAsset(getAssets(), "fonts/coolvetica_i.ttf");
-        tvFont.setTypeface(myFont);
         etPassword=findViewById(R.id.etPassword);
         btnLogin=findViewById(R.id.btnProfile);
         tvForgotPassword=findViewById(R.id.tvForgotPassword);

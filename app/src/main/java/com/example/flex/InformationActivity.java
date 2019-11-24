@@ -1,5 +1,6 @@
 package com.example.flex;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -28,6 +29,7 @@ import java.util.Objects;
 public class InformationActivity extends AppCompatActivity {
 
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class InformationActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        @SuppressLint("PrivateResource") final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
@@ -66,7 +68,6 @@ public class InformationActivity extends AppCompatActivity {
         ImageView ivCall=findViewById(R.id.ivCall);
         ImageView ivDirections=findViewById(R.id.ivDirections);
         ImageView ivWeb=findViewById(R.id.ivWeb);
-
 
 
         ivCall.setOnClickListener(new View.OnClickListener() {
@@ -290,11 +291,11 @@ public class InformationActivity extends AppCompatActivity {
 
         if(msg1.equals("1")) {
 
-           tv.setText("Ekart Logistics");
-           iv.setImageResource(R.drawable.ic_flipkart);
-           address.setText("Soubhagya Nagar, Baramunda, Bhubaneswar, Odisha 751003");
-           phone.setText("09090011700");
-           officeHours.setText("8am-10pm. Sundays closed.");
+            tv.setText("Ekart Logistics");
+            iv.setImageResource(R.drawable.ic_flipkart);
+            address.setText("Soubhagya Nagar, Baramunda, Bhubaneswar, Odisha 751003");
+            phone.setText("09090011700");
+            officeHours.setText("8am-10pm. Sundays closed.");
 
         }
 
@@ -320,15 +321,15 @@ public class InformationActivity extends AppCompatActivity {
 
         if(msg4.equals("4")){
 
-             tv.setText("Delhivery");
+            tv.setText("Delhivery");
 
-             Glide.with(InformationActivity.this)
+            Glide.with(InformationActivity.this)
                     .load("https://nexusvp.com/wp-content/uploads/2014/04/oie_JbUn8ia6Q3Zq.png")
                     .into(iv);
 
-             address.setText("N2-B2, CRP Ekamra Kanana Rd, N2, Block N2, IRC Village, Nayapalli, Bhubaneswar, Odisha 751015");
-             phone.setText("07790018067");
-             officeHours.setText("8am-6pm. Sundays closed.");
+            address.setText("N2-B2, CRP Ekamra Kanana Rd, N2, Block N2, IRC Village, Nayapalli, Bhubaneswar, Odisha 751015");
+            phone.setText("07790018067");
+            officeHours.setText("8am-6pm. Sundays closed.");
 
         }
 
@@ -361,8 +362,6 @@ public class InformationActivity extends AppCompatActivity {
             officeHours.setText("10am-5pm. Sundays closed.");
 
         }
-
-
 
 
     }

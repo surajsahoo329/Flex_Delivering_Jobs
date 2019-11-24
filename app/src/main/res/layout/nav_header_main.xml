@@ -13,7 +13,8 @@
         android:id="@+id/nav_header_imageView"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/ic_launcher_round"/>
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_launcher_round" />
 
     <TextView
         android:id="@+id/tvWelcome"

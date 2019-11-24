@@ -83,6 +83,7 @@
             android:id="@+id/ivEditProfile"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_edit" />
 
         <Space
@@ -94,7 +95,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_choose_photo"
-            />
+            android:contentDescription="@string/todo" />
 
         <Space
             android:layout_width="30dp"
@@ -104,6 +105,7 @@
             android:id="@+id/ivUploadPhoto"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_upload" />
 
         <Space
@@ -115,7 +117,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_delete_account"
-            />
+            android:contentDescription="@string/todo" />
 
     </LinearLayout>
     

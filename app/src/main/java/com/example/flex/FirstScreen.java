@@ -2,11 +2,9 @@ package com.example.flex;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class FirstScreen extends Activity  {
 
     Handler handler;
-    TextView tv1,tv2;
     FirebaseAuth mAuth;
 
 
@@ -28,14 +25,6 @@ public class FirstScreen extends Activity  {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         ); // sets status bar transparent
 
-        tv1=findViewById(R.id.flex_id);
-        Typeface myFont1 = Typeface.createFromAsset(getAssets(),"fonts/coolvetica_i.ttf");
-        tv1.setTypeface(myFont1);
-
-        tv2=findViewById(R.id.catch_line);
-        Typeface myFont2 = Typeface.createFromAsset(getAssets(),"fonts/coolvetica_i.ttf");
-        tv2.setTypeface(myFont2);
-
         /*imageView = (ImageView)findViewById(R.id.logo_id);
 
         Bitmap bm = ((BitmapDrawable)getResources().getDrawable(R.drawable.delivery)).getBitmap();
@@ -45,7 +34,7 @@ public class FirstScreen extends Activity  {
         paint.setAntiAlias(true);
         paint.setShader(new BitmapShader(bm, Shader.TileMode.CLAMP,Shader.TileMode.CLAMP));
         canvas.drawRoundRect((new RectF(0,0,bm.getWidth(),bm.getHeight())),100,100,paint);
-        imageView.setImageBitmap(ir);*/
+        imageView.setImageBitmap(ir);*/ //set circular image
 
         handler=new Handler();
         handler.postDelayed(new Runnable() {

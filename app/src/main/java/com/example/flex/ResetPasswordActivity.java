@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -16,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,7 +39,9 @@ import java.util.Objects;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
-    EditText etCurrentPassword, etNewPassword, etConfirmNewPassword;
+    EditText etCurrentPassword;
+    EditText etNewPassword;
+    EditText etConfirmNewPassword;
     Button btnChangePassword;
     DatabaseReference dbRef,usrRef;
     String checkEmail,uEmail,id;
@@ -65,10 +65,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
         Spannable text=new SpannableString(getSupportActionBar().getTitle());
         text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         getSupportActionBar().setTitle(text);
-
-        TextView textView=findViewById(R.id.changePassTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
 
         parentLayout = findViewById(android.R.id.content);
         etCurrentPassword=findViewById(R.id.edCurrentPassword);

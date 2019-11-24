@@ -1,15 +1,14 @@
 package com.example.flex;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -34,7 +33,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 
 /**
@@ -97,14 +95,8 @@ public class SlotFragment extends Fragment {
         ivCompany=parentHolder.findViewById(R.id.ivImage);
         relativeLayout=parentHolder.findViewById(R.id.relLayout);
         historyListViewSlot=parentHolder.findViewById(R.id.historyListViewSlot);
+        companies=new ArrayList<>();
 
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        tvSlotHeading.setTypeface(myFont);
-
-        companies = new ArrayList<Company>();
-        ArrayAdapter<Company> adapter=new ArrayAdapter<Company>(refActivity,
-                android.R.layout.simple_list_item_1,
-                companies);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("Slot");
@@ -135,7 +127,7 @@ public class SlotFragment extends Fragment {
                             String stTime = ds.child("showStartTime").getValue(String.class);
                             String hours = ds.child("showEndTime").getValue(String.class);
 
-                            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                            @SuppressLint("SimpleDateFormat") SimpleDateFormat df=new SimpleDateFormat("dd-MMM-yyyy");
                             Date strDate = null;
                             try {
                                 strDate = df.parse(date);
@@ -219,7 +211,7 @@ public class SlotFragment extends Fragment {
                                         break;
                                 }
 
-                                SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
                                 Date sDate=new Date();
                                 String currentDate=sdf.format(sDate);
 
@@ -531,7 +523,7 @@ public class SlotFragment extends Fragment {
                                         break;
                                 }
 
-                                SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
                                 Date sDate=new Date();
                                 String currentDate=sdf.format(sDate);
 

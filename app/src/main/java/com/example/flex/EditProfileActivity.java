@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -16,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,10 +59,6 @@ public class EditProfileActivity extends AppCompatActivity {
         Spannable text=new SpannableString(getSupportActionBar().getTitle());
         text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         getSupportActionBar().setTitle(text);
-
-        TextView textView=findViewById(R.id.editProfileTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
 
 
         etName=findViewById(R.id.edName);
@@ -126,6 +120,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
                                     if (updatePhone.length() != 0) {
+                                        assert id != null;
                                         usrRef.child(id).child("userPhone").setValue(updatePhone);
                                         updateFlag=1;
                                     }

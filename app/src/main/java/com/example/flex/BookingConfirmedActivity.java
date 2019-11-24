@@ -1,9 +1,9 @@
 package com.example.flex;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -12,7 +12,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +24,7 @@ import java.util.Objects;
 
 public class BookingConfirmedActivity extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class BookingConfirmedActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        @SuppressLint("PrivateResource") final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
@@ -42,11 +42,6 @@ public class BookingConfirmedActivity extends AppCompatActivity {
         text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         getSupportActionBar().setTitle(text);
 
-        TextView textView=findViewById(R.id.bookingConfirmedTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
-
-        ImageView iv=findViewById(R.id.ivHouse);
         TextView tvCompany=findViewById(R.id.tvCompany);
         TextView tvTimings=findViewById(R.id.tvTimings);
         TextView tvAddress=findViewById(R.id.tvAddress);
@@ -63,8 +58,7 @@ public class BookingConfirmedActivity extends AppCompatActivity {
         char[] modDateArr=new char[date.length()];
         int count = 0;
 
-        for(int i =0; i< dateArr.length; i++)
-        {
+        for(int i =0; i< dateArr.length; i++) {
             if(dateArr[i] == '-')
                 count ++;
             if(count == 2)
@@ -76,53 +70,33 @@ public class BookingConfirmedActivity extends AppCompatActivity {
         final String modTimeStr = String.valueOf(modDateArr)+", "+time+" | "+hours;
         tvTimings.setText(modTimeStr);
 
-        if(company == 2)
-        {
+        if(company == 2) {
             tvCompany.setText("Fedex");
             tvAddress.setText("Master Canteen, Bhubaneswar");
             ivCompany.setImageResource(R.drawable.ic_fedex);
-        }
-        else if(company == 3)
-        {
+        } else if(company == 3) {
             tvCompany.setText("Aramex");
             tvAddress.setText("Jayadev Vihar, Bhubaneswar");
             ivCompany.setImageResource(R.drawable.ic_aramex);
-        }
-        else if(company == 4)
-        {
+        } else if(company == 4) {
             tvCompany.setText("Delhivery");
             tvAddress.setText("Nayapalli, Bhubaneswar");
             Glide.with(BookingConfirmedActivity.this)
                     .load("https://nexusvp.com/wp-content/uploads/2014/04/oie_JbUn8ia6Q3Zq.png")
                     .into(ivCompany);
-        }
-        else if(company == 5)
-        {
+        } else if(company == 5) {
             tvCompany.setText("Blue Dart");
             tvAddress.setText("Kharabela Nagar, Bhubaneswar");
             ivCompany.setImageResource(R.drawable.ic_bluedart);
-        }
-        else if(company == 6)
-        {
+        } else if(company == 6) {
             tvCompany.setText("DTDC");
             tvAddress.setText("Master Canteen Area, Bhubaneswar");
             ivCompany.setImageResource(R.drawable.ic_dtdc);
-        }
-        else if(company == 7)
-        {
+        } else if(company == 7) {
             tvCompany.setText("Indian Post");
             tvAddress.setText("Bapuji Nagar, Bhubaneswar");
             ivCompany.setImageResource(R.drawable.ic_indianpost);
         }
-
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(BookingConfirmedActivity.this,MainActivity.class));
-                finish();
-            }
-        });
 
     }
 

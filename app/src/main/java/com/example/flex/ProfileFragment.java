@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -160,10 +159,6 @@ public class ProfileFragment extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
-        TextView textView=parentHolder.findViewById(R.id.tvProfileTitle);
-        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
-        textView.setTypeface(myFont);
-
         viewPhoto=parentHolder.findViewById(R.id.imageView);
 
         ImageView ivEditProfile=parentHolder.findViewById(R.id.ivEditProfile);
@@ -211,7 +206,7 @@ public class ProfileFragment extends Fragment {
                     if(uEmail.equals(checkEmail)) {
                         uPhone = ds.child("userPhone").getValue(String.class);
                         uName = ds.child("userName").getValue(String.class);
-                        isUploadedPhotoFlag = ds.child("userPhotoFlag").getValue(Integer.class);
+                        isUploadedPhotoFlag=ds.getValue(Integer.class);
                         if(isUploadedPhotoFlag == 1)
                             setImage();
 
