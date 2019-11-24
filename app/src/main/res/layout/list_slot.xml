@@ -43,7 +43,7 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/view2"
         android:layout_toRightOf="@+id/view2"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         android:text="Ekart Logistics"
         android:textColor="#000" />
 

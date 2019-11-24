@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -17,12 +18,15 @@
             android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:id="@+id/editProfileTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Edit Profile"
-            android:textSize="40dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/edit_profile"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <Space
@@ -40,7 +44,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="text"
             />
 
@@ -60,9 +64,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:inputType="number"
-             />
+            android:importantForAutofill="no"
+            tools:ignore="TextFields" />
 
         <Space
             android:layout_width="match_parent"
@@ -76,7 +81,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
             android:textAllCaps="false"
-            android:text="Save Changes"
+            android:text="@string/save_changes"
             android:textColor="#ffffff" />
 
         <Space
@@ -89,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="Change Password"
+            android:text="@string/change_password"
             android:background="@drawable/mybutton"
             android:textAllCaps="false"
             android:textColor="#ffffff" />

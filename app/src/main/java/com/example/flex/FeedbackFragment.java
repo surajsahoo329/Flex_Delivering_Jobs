@@ -3,16 +3,20 @@ package com.example.flex;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -26,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 
 /**
@@ -47,6 +52,7 @@ public class FeedbackFragment extends Fragment {
     }
 
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,11 +63,15 @@ public class FeedbackFragment extends Fragment {
                 false);
         parentLayout = referenceActivity.findViewById(android.R.id.content);
 
-        Button btnFeedback=(Button) parentHolder.findViewById(R.id.btnFeedback);
-        Button btnGetFeedback=(Button) parentHolder.findViewById(R.id.btnGetFeedback);
-        etFeedback=(EditText) parentHolder.findViewById(R.id.etFeedback);
-        tvSetComment = (TextView) parentHolder.findViewById(R.id.tvSetComment);
-        tvSetRating = (TextView) parentHolder.findViewById(R.id.tvSetRating);
+        Button btnFeedback=parentHolder.findViewById(R.id.btnFeedback);
+        Button btnGetFeedback=parentHolder.findViewById(R.id.btnGetFeedback);
+        etFeedback=parentHolder.findViewById(R.id.etFeedback);
+        tvSetComment=parentHolder.findViewById(R.id.tvSetComment);
+        tvSetRating=parentHolder.findViewById(R.id.tvSetRating);
+
+        TextView textView=parentHolder.findViewById(R.id.textView);
+        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont1);
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -84,35 +94,35 @@ public class FeedbackFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                        for(DataSnapshot ds : dataSnapshot.getChildren())
-                        {
+                        for(DataSnapshot ds : dataSnapshot.getChildren()) {
                             uemail = ds.child("userMail").getValue(String.class);
 
                             assert uemail != null;
                             if (uemail.equals(checkEmail)) {
 
-                                TextView tvReviewHeading = (TextView) parentHolder.findViewById(R.id.tvRatingTitle);
+                                TextView tvReviewHeading=parentHolder.findViewById(R.id.tvRatingTitle);
+                                Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+                                tvReviewHeading.setTypeface(myFont);
+                                LinearLayout linearLayout=parentLayout.findViewById(R.id.linearLayoutFB);
+
 
                                 String getRating = ds.child("rating").getValue(String.class);
                                 String getFeedback = ds.child("feedback").getValue(String.class);
 
                                 assert getRating != null;
-                                if(!getRating.equals("0"))
-                                {
+                                if(!getRating.equals("0")) {
                                     double stars = Double.parseDouble(getRating);
+
+                                    linearLayout.setVisibility(View.VISIBLE);
                                     tvReviewHeading.setVisibility(View.VISIBLE);
 
-
-                                    if(stars != 0.0)
-                                    {
+                                    if(stars != 0.0) {
                                         NumberFormat nf = new DecimalFormat("#.####");
                                         String strStars = nf.format(stars);
                                         tvSetRating.setText("Rating : "+strStars+" / 5");
                                         tvSetRating.setVisibility(View.VISIBLE);
 
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         tvSetRating.setText("Rating : 1 / 5");
                                         tvSetRating.setVisibility(View.VISIBLE);
                                     }
@@ -131,8 +141,7 @@ public class FeedbackFragment extends Fragment {
                                     pd.dismiss();
 
 
-                                }
-                                else {
+                                } else {
 
                                     Snackbar.make(parentLayout,"Please giving rating first", Snackbar.LENGTH_LONG)
                                             .setDuration(3000)
@@ -151,8 +160,7 @@ public class FeedbackFragment extends Fragment {
                                 }
 
                                 assert getFeedback != null;
-                                if(!getFeedback.equals(""))
-                                {
+                                if(!getFeedback.equals("")) {
                                     tvSetComment.setText(getFeedback);
                                     tvSetComment.setVisibility(View.VISIBLE);
                                 }
@@ -189,82 +197,78 @@ public class FeedbackFragment extends Fragment {
 
                 fdbRef = dbRef.child("Feedback");
 
-                if(flag == 1)
-                    {
+                if(flag == 1) {
 
-                        final ProgressDialog pd = ProgressDialog.show(referenceActivity,"Sending Feedback","Please wait...",true);
+                    final ProgressDialog pd = ProgressDialog.show(referenceActivity,"Sending Feedback","Please wait...",true);
 
-                        feedbackText = etFeedback.getText().toString();
+                    feedbackText = etFeedback.getText().toString();
 
-                        ValueEventListener feedbackListener = new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    ValueEventListener feedbackListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                                for(DataSnapshot ds : dataSnapshot.getChildren())
-                                {
-                                    uemail = ds.child("userMail").getValue(String.class);
+                            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                uemail = ds.child("userMail").getValue(String.class);
 
-                                    assert uemail != null;
-                                    if (uemail.equals(checkEmail)) {
+                                assert uemail != null;
+                                if (uemail.equals(checkEmail)) {
 
-                                        String id = ds.child("userId").getValue(String.class);
-                                        assert id != null;
-                                        fdbRef.child(id).child("feedback").setValue(feedbackText);
-                                        fdbRef.child(id).child("rating").setValue(feedbackRating);
+                                    String id = ds.child("userId").getValue(String.class);
+                                    assert id != null;
+                                    fdbRef.child(id).child("feedback").setValue(feedbackText);
+                                    fdbRef.child(id).child("rating").setValue(feedbackRating);
 
-                                        Snackbar.make(parentLayout,"Thank you for your feedback", Snackbar.LENGTH_LONG)
-                                                .setDuration(3000)
-                                                .setAction("Close", new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
+                                    Snackbar.make(parentLayout,"Thank you for your feedback", Snackbar.LENGTH_LONG)
+                                            .setDuration(3000)
+                                            .setAction("Close", new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
 
-                                                    }
-                                                })
-                                                .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                                                .show();
+                                                }
+                                            })
+                                            .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                                            .show();
 
-                                        pd.dismiss();
+                                    pd.dismiss();
 
-                                        break;
-                                    }
-
+                                    break;
                                 }
 
                             }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
 
-                                pd.dismiss();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        };
+                            pd.dismiss();
 
-                        fdbRef.addListenerForSingleValueEvent(feedbackListener);
+                        }
+                    };
 
-                    }
-                    else
-                    {
-                        Snackbar.make(parentLayout,"Please giving rating", Snackbar.LENGTH_LONG)
-                                .setDuration(3000)
-                                .setAction("Close", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
+                    fdbRef.addListenerForSingleValueEvent(feedbackListener);
 
-                                    }
-                                })
-                                .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                                .show();
+                } else {
+                    Snackbar.make(parentLayout,"Please giving rating", Snackbar.LENGTH_LONG)
+                            .setDuration(3000)
+                            .setAction("Close", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+                                }
+                            })
+                            .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                            .show();
 
-                    }
 
                 }
-            });
+
+            }
+        });
 
 
-      return parentHolder;
+        return parentHolder;
 
     }
 
@@ -272,9 +276,9 @@ public class FeedbackFragment extends Fragment {
 
      private void addListenerOnRatingBar(View view) {
 
-        RatingBar rb=(RatingBar) parentHolder.findViewById(R.id.ratingBar);
-        tvRating = (TextView) view.findViewById(R.id.tvRating);
-        tvComment = (TextView) view.findViewById(R.id.tvComment);
+         RatingBar rb=parentHolder.findViewById(R.id.ratingBar);
+         tvRating=view.findViewById(R.id.tvRating);
+         tvComment=view.findViewById(R.id.tvComment);
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating,
@@ -322,6 +326,9 @@ public class FeedbackFragment extends Fragment {
                     tvComment.setText("Ohh ! Please give feedback.");
 
                 }
+
+                tvRating.setVisibility(View.VISIBLE);
+                tvComment.setVisibility(View.VISIBLE);
 
                 feedbackRating = String.valueOf(rating);
                 flag = 1;

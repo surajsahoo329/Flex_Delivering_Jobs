@@ -1,19 +1,27 @@
 package com.example.flex;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,14 +51,26 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1db945")));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        @SuppressLint("PrivateResource") final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        etName = (EditText) findViewById(R.id.edName);
-        etPhone = (EditText) findViewById(R.id.edPhone);
-        btnConfirm = (Button) findViewById(R.id.btnEditProfile);
-        btnChangePassword = (Button) findViewById(R.id.btnChange);
+        Spannable text=new SpannableString(getSupportActionBar().getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(text);
+
+        TextView textView=findViewById(R.id.editProfileTitle);
+        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont);
+
+
+        etName=findViewById(R.id.edName);
+        etPhone=findViewById(R.id.edPhone);
+        btnConfirm=findViewById(R.id.btnEditProfile);
+        btnChangePassword=findViewById(R.id.btnChange);
         parentLayout = findViewById(android.R.id.content);
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

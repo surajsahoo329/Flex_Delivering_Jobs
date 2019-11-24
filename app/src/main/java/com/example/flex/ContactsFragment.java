@@ -5,18 +5,23 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -29,6 +34,7 @@ public class ContactsFragment extends Fragment {
     }
 
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,11 +43,16 @@ public class ContactsFragment extends Fragment {
                 false);
 
         final Activity refActivity = getActivity();
+        assert refActivity != null;
         final View parentLayout = refActivity.findViewById(android.R.id.content);
 
-        ImageView ivCall = (ImageView) parentHolder.findViewById(R.id.ivCall);
-        ImageView ivGmail = (ImageView) parentHolder.findViewById(R.id.ivGmail);
-        ImageView ivWhatsapp = (ImageView) parentHolder.findViewById(R.id.ivWhatsapp);
+        ImageView ivCall=parentHolder.findViewById(R.id.ivCall);
+        ImageView ivGmail=parentHolder.findViewById(R.id.ivGmail);
+        ImageView ivWhatsapp=parentHolder.findViewById(R.id.ivWhatsapp);
+
+        TextView textView=parentHolder.findViewById(R.id.textView);
+        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont1);
 
 
         ivCall.setOnClickListener(new View.OnClickListener() {

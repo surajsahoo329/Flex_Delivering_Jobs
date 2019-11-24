@@ -1,15 +1,18 @@
 package com.example.flex;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+
+import java.util.Objects;
 
 
 /**
@@ -23,6 +26,7 @@ public class AboutFragment extends Fragment {
     }
 
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,20 +34,9 @@ public class AboutFragment extends Fragment {
         View parentHolder=inflater.inflate(R.layout.fragment_about, container,
                 false);
 
-        ImageView btnGithub=parentHolder.findViewById(R.id.ivGithub);
-
-
-        btnGithub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Uri uri = Uri.parse("https://github.com/surajsahoo329");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-
-            }
-        });
-
+        TextView textView=parentHolder.findViewById(R.id.textViewAbout);
+        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont1);
 
         return parentHolder;
 

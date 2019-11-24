@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -47,7 +48,7 @@ public class LicenseDetailsActivity extends AppCompatActivity {
 
         final ProgressDialog pd = ProgressDialog.show(LicenseDetailsActivity.this,"Loading License Details","Please wait...",true);
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable());
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
@@ -57,6 +58,11 @@ public class LicenseDetailsActivity extends AppCompatActivity {
         Spannable text=new SpannableString(getSupportActionBar().getTitle());
         text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         getSupportActionBar().setTitle(text);
+
+        TextView textView=findViewById(R.id.tvLicenseDetailsTitle);
+        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont);
+
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();

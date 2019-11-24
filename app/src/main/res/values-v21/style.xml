@@ -6,6 +6,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">#1DB945</item>
+        <item name="android:fontFamily">@font/prod_sans_light</item>
     </style>
 
 
@@ -13,5 +14,4 @@
         <item name="colorControlActivated">#4FC2F8</item>
         <item name="colorControlNormal">#4D4B4B</item>
     </style>
-
 </resources>

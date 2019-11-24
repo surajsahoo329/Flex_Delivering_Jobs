@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
-        toolbar.setTitle(R.string.app_name);
+        toolbar.setTitle("Flex");
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.background_dark));
         setSupportActionBar(toolbar);
 

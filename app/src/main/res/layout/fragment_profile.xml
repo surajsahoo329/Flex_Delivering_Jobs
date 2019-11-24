@@ -5,10 +5,19 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
-    
-    <Space
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:id="@+id/tvProfileTitle"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Profile"
+        android:textColor="#000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 
     <ImageView
@@ -17,9 +26,9 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:clickable="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_profile" />
+        android:contentDescription="@string/todo"
+        android:focusable="true"
+        android:src="@drawable/ic_profile" />
 
 
     <Space
@@ -76,25 +85,34 @@
             android:layout_height="50dp"
             android:src="@drawable/ic_edit" />
 
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
         <ImageView
             android:id="@+id/ivChoosePhoto"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
             android:src="@drawable/ic_choose_photo"
             />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/ivUploadPhoto"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
             android:src="@drawable/ic_upload" />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/ivDeleteAccount"
             android:layout_width="50dp"
-            android:layout_marginLeft="30dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_delete_account"
             />
@@ -117,46 +135,50 @@
             android:layout_width="50dp"
             android:gravity="center_horizontal"
             android:textColor="#000"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:textSize="12sp"
              />
 
-        <TextView
-            android:layout_height="match_parent"
-            android:layout_width="50dp"
-            android:gravity="center_horizontal"
-            android:textColor="#000"
-            android:layout_marginLeft="30dp"
-            android:text="Choose Photo"
-            android:textSize="12sp"
-            />
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_height="match_parent"
             android:layout_width="50dp"
             android:gravity="center_horizontal"
             android:textColor="#000"
-            android:layout_marginLeft="30dp"
-            android:text="Upload Photo"
+            android:text="@string/choose_photo"
             android:textSize="12sp"
             />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_height="match_parent"
             android:layout_width="50dp"
             android:gravity="center_horizontal"
             android:textColor="#000"
-            android:layout_marginLeft="30dp"
-            android:text="Delete Acc."
+            android:text="@string/upload_photo"
+            android:textSize="12sp"
+            />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:gravity="center_horizontal"
+            android:textColor="#000"
+            android:text="@string/delete_acc"
             android:textSize="12sp"
             />
         
     </LinearLayout>
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
 
     <Space
         android:layout_width="match_parent"

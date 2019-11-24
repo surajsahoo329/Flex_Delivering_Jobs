@@ -2,8 +2,9 @@ package com.example.flex;
 
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -48,8 +51,6 @@ public class SlotFragment extends Fragment {
     private ListView historyListViewSlot;
     private Slot historySlot;
     private DatabaseReference historyRef;
-    private ArrayAdapter<Company> adapter;
-    private ListActivity listActivity;
 
     private static final String[] company = new String[] { "Ekart Logistics",
             "Fedex", "Aramex", "Delhivery", "Blue Dart", "DTDC" ,"Indian Post"};
@@ -71,6 +72,7 @@ public class SlotFragment extends Fragment {
     }
 
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,8 +98,11 @@ public class SlotFragment extends Fragment {
         relativeLayout=parentHolder.findViewById(R.id.relLayout);
         historyListViewSlot=parentHolder.findViewById(R.id.historyListViewSlot);
 
+        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+        tvSlotHeading.setTypeface(myFont);
+
         companies = new ArrayList<Company>();
-        adapter=new ArrayAdapter<Company>(refActivity,
+        ArrayAdapter<Company> adapter=new ArrayAdapter<Company>(refActivity,
                 android.R.layout.simple_list_item_1,
                 companies);
 
@@ -249,8 +254,7 @@ public class SlotFragment extends Fragment {
                                                     String hoursHis = ds.child("showEndTime").getValue(String.class);
 
                                                     assert uEmail != null;
-                                                    if(uEmail.equals(checkMail))
-                                                    {
+                                                    if(uEmail.equals(checkMail)) {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
@@ -350,8 +354,7 @@ public class SlotFragment extends Fragment {
                                                     String hoursHis = ds.child("showEndTime").getValue(String.class);
 
                                                     assert uEmail != null;
-                                                    if(uEmail.equals(checkMail))
-                                                    {
+                                                    if(uEmail.equals(checkMail)) {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
@@ -390,9 +393,7 @@ public class SlotFragment extends Fragment {
                                             }
                                         });
                                     }
-                                }
-                                else
-                                {
+                                } else {
 
                                     DatabaseReference dbSlot1=FirebaseDatabase.getInstance().getReference("Slot");
                                     assert id != null;
@@ -418,8 +419,7 @@ public class SlotFragment extends Fragment {
                                                 String hoursHis = ds.child("showEndTime").getValue(String.class);
 
                                                 assert uEmail != null;
-                                                if(uEmail.equals(checkMail))
-                                                {
+                                                if(uEmail.equals(checkMail)) {
 
                                                     historySlot = ds.getValue(Slot.class);
                                                     tvHistory.setVisibility(View.VISIBLE);
@@ -459,8 +459,7 @@ public class SlotFragment extends Fragment {
                                     });
 
                                 }
-                            }
-                            else {
+                            } else {
 
                                 int timeCount=8, hourCount=2;
                                 assert stTime != null;
@@ -568,8 +567,7 @@ public class SlotFragment extends Fragment {
                                                     String hoursHis = ds.child("showEndTime").getValue(String.class);
 
                                                     assert uEmail != null;
-                                                    if(uEmail.equals(checkMail))
-                                                    {
+                                                    if(uEmail.equals(checkMail)) {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
@@ -669,8 +667,7 @@ public class SlotFragment extends Fragment {
                                                     String hoursHis = ds.child("showEndTime").getValue(String.class);
 
                                                     assert uEmail != null;
-                                                    if(uEmail.equals(checkMail))
-                                                    {
+                                                    if(uEmail.equals(checkMail)) {
 
                                                         historySlot = ds.getValue(Slot.class);
                                                         tvHistory.setVisibility(View.VISIBLE);
@@ -709,9 +706,7 @@ public class SlotFragment extends Fragment {
                                             }
                                         });
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     assert date != null;
                                     char[] dateArr=date.toCharArray();
                                     char[] modDateArr=new char[date.length()];
@@ -771,8 +766,7 @@ public class SlotFragment extends Fragment {
                                                 int slotFlag  = ds.child("slotFlag").getValue(Integer.class);
 
                                                 assert uEmail != null;
-                                                if(uEmail.equals(checkMail) && slotFlag != 0)
-                                                {
+                                                if(uEmail.equals(checkMail) && slotFlag != 0) {
 
                                                     historySlot = ds.getValue(Slot.class);
                                                     tvHistory.setVisibility(View.VISIBLE);
@@ -814,9 +808,7 @@ public class SlotFragment extends Fragment {
                                 }
                             }
 
-                        }
-                        else if(slotFlag == 8)
-                        {
+                        } else if(slotFlag == 8) {
                             tvSlotHeading.setText("Your Slots");
                             tvSlotMsg.setVisibility(View.GONE);
 
@@ -826,40 +818,38 @@ public class SlotFragment extends Fragment {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                    for (DataSnapshot ds :dataSnapshot.getChildren())
-                                    {
+                                    for (DataSnapshot ds :dataSnapshot.getChildren()) {
                                         uEmail = ds.child("userMail").getValue(String.class);
                                         String dateHis = ds.child("showDate").getValue(String.class);
                                         String timeHis = ds.child("showStartTime").getValue(String.class);
                                         String hoursHis = ds.child("showEndTime").getValue(String.class);
 
                                         assert uEmail != null;
-                                        if(uEmail.equals(checkMail))
-                                        {
+                                        if(uEmail.equals(checkMail)) {
 
-                                                historySlot = ds.getValue(Slot.class);
-                                                tvHistory.setVisibility(View.VISIBLE);
+                                            historySlot = ds.getValue(Slot.class);
+                                            tvHistory.setVisibility(View.VISIBLE);
                                             historyListViewSlot.setVisibility(View.VISIBLE);
 
-                                                int i = historySlot.getSlotFlag();
+                                            int i = historySlot.getSlotFlag();
 
-                                                assert dateHis != null;
-                                                char[] dateArr=dateHis.toCharArray();
-                                                char[] modDateArr=new char[dateHis.length()];
-                                                int count=0;
+                                            assert dateHis != null;
+                                            char[] dateArr=dateHis.toCharArray();
+                                            char[] modDateArr=new char[dateHis.length()];
+                                            int count=0;
 
-                                                for (int j=0; j < dateArr.length; j++) {
-                                                    if (dateArr[j] == '-')
-                                                        count++;
-                                                    if (count == 2)
-                                                        break;
+                                            for (int j=0; j < dateArr.length; j++) {
+                                                if (dateArr[j] == '-')
+                                                    count++;
+                                                if (count == 2)
+                                                    break;
 
-                                                    modDateArr[j]=dateArr[j];
-                                                }
+                                                modDateArr[j]=dateArr[j];
+                                            }
 
-                                                String modTime=String.valueOf(modDateArr) + ", " + timeHis + " | " + hoursHis;
-                                                Company item = new Company(images[i-1], company[i-1],modTime, address[i-1]);
-                                                companies.add(item);
+                                            String modTime=String.valueOf(modDateArr) + ", " + timeHis + " | " + hoursHis;
+                                            Company item = new Company(images[i-1], company[i-1],modTime, address[i-1]);
+                                            companies.add(item);
 
                                         }
                                     }

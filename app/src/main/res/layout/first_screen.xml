@@ -9,21 +9,23 @@
 
     <TextView
         android:id="@+id/flex_id"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="flex "
+        android:gravity="center"
+        android:text="@string/flex"
         android:textStyle="bold|italic"
         android:textColor="#ffffff"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/catch_line"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delivering Jobs "
+        android:gravity="center"
         android:layout_marginBottom="40dp"
+        android:text="@string/delivering_jobs"
         android:textColor="#ffffff"
         android:textStyle="italic"
-        android:textSize="24dp" />
+        android:textSize="24sp" />
 
 </LinearLayout>

@@ -1,10 +1,12 @@
 package com.example.flex;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -144,6 +146,7 @@ public class ProfileFragment extends Fragment {
         pd.dismiss();
     }
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -157,6 +160,10 @@ public class ProfileFragment extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
+        TextView textView=parentHolder.findViewById(R.id.tvProfileTitle);
+        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont);
+
         viewPhoto=parentHolder.findViewById(R.id.imageView);
 
         ImageView ivEditProfile=parentHolder.findViewById(R.id.ivEditProfile);
@@ -166,8 +173,7 @@ public class ProfileFragment extends Fragment {
 
         final ProgressDialog pd = ProgressDialog.show(refActivity,"Loading account","Please wait...",true);
 
-        if(EditProfileActivity.updateFlag == 1)
-        {
+        if(EditProfileActivity.updateFlag == 1) {
             pd.dismiss();
 
             Snackbar.make(parentLayout,"Profile updated", Snackbar.LENGTH_LONG)
@@ -193,6 +199,7 @@ public class ProfileFragment extends Fragment {
 
         ValueEventListener userListener = new ValueEventListener() {
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -201,8 +208,7 @@ public class ProfileFragment extends Fragment {
                     uEmail = ds.child("userMail").getValue(String.class);
 
                     assert uEmail != null;
-                    if(uEmail.equals(checkEmail))
-                    {
+                    if(uEmail.equals(checkEmail)) {
                         uPhone = ds.child("userPhone").getValue(String.class);
                         uName = ds.child("userName").getValue(String.class);
                         isUploadedPhotoFlag = ds.child("userPhotoFlag").getValue(Integer.class);
@@ -222,7 +228,7 @@ public class ProfileFragment extends Fragment {
                 textViewPh=parentHolder.findViewById(R.id.tvPhone);
 
                 textViewName.setText(uName);
-                textViewPh.setText(uPhone);
+                textViewPh.setText("+91-" + uPhone);
                 textViewMail.setText(uEmail);
 
             }
@@ -265,7 +271,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                     chooseImage();
+                chooseImage();
 
             }
         });
@@ -277,8 +283,7 @@ public class ProfileFragment extends Fragment {
 
                 if(uploadImageFlag == 1)
                     uploadImage();
-                else
-                {
+                else {
                     Snackbar.make(parentLayout,"Please choose a photo before uploading", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {

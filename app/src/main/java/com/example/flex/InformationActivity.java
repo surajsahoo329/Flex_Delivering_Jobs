@@ -2,11 +2,16 @@ package com.example.flex;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,8 +36,16 @@ public class InformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_information);
 
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1db945")));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        Spannable text=new SpannableString(getSupportActionBar().getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(text);
 
         Intent it = getIntent();
 
@@ -44,15 +57,15 @@ public class InformationActivity extends AppCompatActivity {
         final String msg6 = it.getStringExtra("dtdc");
         final String msg7 = it.getStringExtra("ipost");
 
-        TextView tv = (TextView) findViewById(R.id.tvCourier);
-        ImageView iv = (ImageView) findViewById(R.id.ivImage);
-        TextView address = (TextView) findViewById(R.id.tvAddress);
-        TextView phone = (TextView) findViewById(R.id.tvPhoneCourier);
-        TextView officeHours = (TextView) findViewById(R.id.tvOfficeHours);
+        TextView tv=findViewById(R.id.tvCourier);
+        ImageView iv=findViewById(R.id.ivImage);
+        TextView address=findViewById(R.id.tvAddress);
+        TextView phone=findViewById(R.id.tvPhoneCourier);
+        TextView officeHours=findViewById(R.id.tvOfficeHours);
 
-        ImageView ivCall = (ImageView) findViewById(R.id.ivCall);
-        ImageView ivDirections = (ImageView) findViewById(R.id.ivDirections);
-        ImageView ivWeb = (ImageView) findViewById(R.id.ivWeb);
+        ImageView ivCall=findViewById(R.id.ivCall);
+        ImageView ivDirections=findViewById(R.id.ivDirections);
+        ImageView ivWeb=findViewById(R.id.ivWeb);
 
 
 

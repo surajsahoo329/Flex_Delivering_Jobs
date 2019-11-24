@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -42,6 +44,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
@@ -142,6 +145,7 @@ public class DLFragment extends Fragment {
     }
 
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -154,23 +158,27 @@ public class DLFragment extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         DatabaseReference mDatabaseReference=FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
-        etDLNumber = (EditText) parentHolder.findViewById(R.id.etDLNumber);
-        etDLName = (EditText) parentHolder.findViewById(R.id.etDLName);
-        etDOB = (EditText) parentHolder.findViewById(R.id.etDOB);
-        etAddress = (EditText) parentHolder.findViewById(R.id.etAddress);
-        etIssueDate = (EditText) parentHolder.findViewById(R.id.etIssueDate);
-        etExpiryDate = (EditText) parentHolder.findViewById(R.id.etExpiryDate);
+        TextView textView=parentHolder.findViewById(R.id.tvDLTitle);
+        Typeface myFont1=Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont1);
 
-        tvIDOB = (TextView) parentHolder.findViewById(R.id.tvIDOB);
-        tvIDate = (TextView) parentHolder.findViewById(R.id.tvInvisibleIssueDate);
-        tvIEDate = (TextView) parentHolder.findViewById(R.id.tvInvisibleExpiryDate);
+        etDLNumber=parentHolder.findViewById(R.id.etDLNumber);
+        etDLName=parentHolder.findViewById(R.id.etDLName);
+        etDOB=parentHolder.findViewById(R.id.etDOB);
+        etAddress=parentHolder.findViewById(R.id.etAddress);
+        etIssueDate=parentHolder.findViewById(R.id.etIssueDate);
+        etExpiryDate=parentHolder.findViewById(R.id.etExpiryDate);
+
+        tvIDOB=parentHolder.findViewById(R.id.tvIDOB);
+        tvIDate=parentHolder.findViewById(R.id.tvInvisibleIssueDate);
+        tvIEDate=parentHolder.findViewById(R.id.tvInvisibleExpiryDate);
 
 
-        ImageView ivUploadDL=(ImageView) parentHolder.findViewById(R.id.ivUploadDL);
-        ImageView ivDownloadDL=(ImageView) parentHolder.findViewById(R.id.ivDownloadDL);
+        ImageView ivUploadDL=parentHolder.findViewById(R.id.ivUploadDL);
+        ImageView ivDownloadDL=parentHolder.findViewById(R.id.ivDownloadDL);
 
-        Button submit =(Button) parentHolder.findViewById(R.id.btnSubmit);
-        Button dlDetails = (Button) parentHolder.findViewById(R.id.btnViewDLDetails);
+        Button submit=parentHolder.findViewById(R.id.btnSubmit);
+        Button dlDetails=parentHolder.findViewById(R.id.btnViewDLDetails);
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -201,14 +209,12 @@ public class DLFragment extends Fragment {
                             uemail = ds.child("userMail").getValue(String.class);
 
                             assert uemail != null;
-                            if(uemail.equals(checkEmail))
-                            {
+                            if(uemail.equals(checkEmail)) {
                                 isUploadedDLFlag = ds.child("userDLFlag").getValue(Integer.class);
 
                                 if(isUploadedDLFlag == 1)
                                     download();
-                                else
-                                {
+                                else {
                                     Snackbar.make(parentLayout,"Please upload your Driving License first ", Snackbar.LENGTH_LONG)
                                             .setDuration(3000)
                                             .setAction("Close", new View.OnClickListener() {
@@ -422,9 +428,7 @@ public class DLFragment extends Fragment {
                     etDLNumber.requestFocus();
 
 
-                }
-
-                else if (name.length() == 0) {
+                } else if (name.length() == 0) {
                     Snackbar.make(parentLayout, "Please enter your name", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -437,9 +441,7 @@ public class DLFragment extends Fragment {
                             .show();
 
                     etDLName.requestFocus();
-                }
-
-                else if (dob.length() == 0) {
+                } else if (dob.length() == 0) {
                     Snackbar.make(parentLayout, "Please enter your date of birth", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -452,9 +454,7 @@ public class DLFragment extends Fragment {
                             .show();
 
                     etDOB.requestFocus();
-                }
-
-                else if (address.length() == 0) {
+                } else if (address.length() == 0) {
                     Snackbar.make(parentLayout, "Please enter your address", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -467,9 +467,7 @@ public class DLFragment extends Fragment {
                             .show();
 
                     etAddress.requestFocus();
-                }
-
-                else if (issueDate.length() == 0) {
+                } else if (issueDate.length() == 0) {
                     Snackbar.make(parentLayout, "Please enter your license's issue date", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -482,9 +480,7 @@ public class DLFragment extends Fragment {
                             .show();
 
                     etIssueDate.requestFocus();
-                }
-
-                else if (expiryDate.length() == 0) {
+                } else if (expiryDate.length() == 0) {
                     Snackbar.make(parentLayout, "Please enter your license's expiry date", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -497,11 +493,7 @@ public class DLFragment extends Fragment {
                             .show();
 
                     etExpiryDate.requestFocus();
-                }
-
-
-                else
-                {
+                } else {
                     final ProgressDialog pd = ProgressDialog.show(refActivity,"","Please wait...",true);
 
                     dlRef=dbRef.child("DL");
@@ -585,8 +577,7 @@ public class DLFragment extends Fragment {
 
                                 if(dlFlag==1)
                                     startActivity(new Intent(refActivity,LicenseDetailsActivity.class));
-                                else
-                                {
+                                else {
                                     Snackbar.make(parentLayout, "Please submit your details first", Snackbar.LENGTH_LONG)
                                             .setDuration(3000)
                                             .setAction("Close", new View.OnClickListener() {

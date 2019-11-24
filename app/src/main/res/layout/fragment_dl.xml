@@ -16,13 +16,15 @@
             android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvDLTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Driving License"
-            android:textSize="40sp"
-            android:gravity="center"
+            android:layout_gravity="start"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/driving_license"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <Space
@@ -41,7 +43,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="License Number"
+            android:hint="@string/license_number"
             android:inputType="text"
             />
 
@@ -60,7 +62,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="text"
             />
 
@@ -79,7 +81,7 @@
             android:ems="10"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:hint="Date of Birth"
+            android:hint="@string/date_of_birth"
             android:focusableInTouchMode="false"
             android:inputType="date"
             />
@@ -100,10 +102,10 @@
                 android:drawableLeft="@drawable/ic_home"
                 android:drawablePadding="5dp"
                 android:ems="10"
-                android:hint="Address"
+            android:hint="@string/address"
                 android:gravity="start"
                 android:inputType="textMultiLine"
-                />
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="wrap_content"
@@ -120,7 +122,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="Issue Date"
+            android:hint="@string/issue_date"
             android:focusableInTouchMode="false"
             android:inputType="date"
             />
@@ -140,10 +142,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="Expiry Date"
+            android:hint="@string/expiry_date"
             android:focusableInTouchMode="false"
             android:inputType="date"
-            />
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="match_parent"
@@ -158,18 +160,21 @@
 
             <ImageView
                 android:id="@+id/ivUploadDL"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_license"
-                />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_upload_dl" />
+
+            <Space
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/ivDownloadDL"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="70dp"
-                android:src="@drawable/ic_download"
-                />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_download_dl" />
 
         </LinearLayout>
 
@@ -187,17 +192,20 @@
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:text="Upload License"
+                android:text="@string/upload_license"
                 android:textColor="#000"
                 android:textSize="12sp"
                 android:gravity="center"
                 />
 
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:text="Download License"
+                android:text="@string/download_license"
                 android:textColor="#000"
                 android:textSize="12sp"
                 android:gravity="center"
@@ -218,7 +226,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
             android:textAllCaps="false"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textColor="#ffffff" />
         
         <Space
@@ -233,7 +241,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/mybutton"
             android:textAllCaps="false"
-            android:text="View License Details"
+            android:text="@string/view_license_details"
             android:textColor="#ffffff" />
 
 
@@ -242,19 +250,28 @@
             android:id="@+id/tvIDOB"
             android:visibility="gone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/date_of_birth"
+            android:importantForAutofill="no"
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/tvInvisibleIssueDate"
             android:visibility="gone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/issue_date"
+            android:importantForAutofill="no"
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/tvInvisibleExpiryDate"
             android:visibility="gone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/expiry_date"
+            android:importantForAutofill="no"
+            android:inputType="date" />
 
         <Space
             android:layout_width="match_parent"

@@ -13,18 +13,18 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="40dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:text="@string/license_details_submitted"
             android:textColor="#000"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="License Details Submitted"
+            android:textSize="30sp"
             />
 
         <Space
@@ -33,11 +33,10 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_confirmed_tick"
-
-            />
+            android:contentDescription="@string/todo" />
 
         <Space
             android:layout_width="match_parent"
@@ -50,7 +49,7 @@
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="To see your license details tap on the icon below. You can edit your details anytime by filling license details again."
+            android:text="@string/to_see_your_license_details_tap_on_the_icon_below_you_can_edit_your_details_anytime_by_filling_license_details_again"
             />
 
         <Space
@@ -62,11 +61,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_license" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </LinearLayout>
 </ScrollView>

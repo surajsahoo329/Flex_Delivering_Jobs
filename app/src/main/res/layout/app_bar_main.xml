@@ -12,16 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        ></com.google.android.material.appbar.AppBarLayout>
+        android:theme="@style/AppTheme.NoActionBar" />
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:id="@+id/toolbar_main"
         android:layout_height="?attr/actionBarSize"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.NoActionBar"
-        ></androidx.appcompat.widget.Toolbar>
+        app:popupTheme="@style/AppTheme.NoActionBar" />
 
     <ScrollView
         android:layout_width="fill_parent"

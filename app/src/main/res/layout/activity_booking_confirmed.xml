@@ -7,16 +7,6 @@
     android:orientation="vertical"
     android:fillViewport="false">
 
-    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        card_view:cardCornerRadius="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,15 +20,16 @@
 
 
             <TextView
+                android:id="@+id/bookingConfirmedTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="40sp"
+                android:text="@string/booking_confirmed"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Booking Confirmed" />
+                android:textSize="30sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -49,94 +40,104 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_confirmed_tick" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-
-            <RelativeLayout
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
                 android:layout_width="match_parent"
-                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:padding="20dp"
-                android:background="@drawable/multilinetext_bg"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/view2"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    android:innerRadius="0dp"
-                    android:shape="ring"
-                    android:thicknessRatio="1.9"
-                    app:cardCornerRadius="10dp"
-                    app:strokeColor="#000"
-                    app:strokeWidth="@dimen/cardview_compat_inset_shadow">
+                android:layout_marginRight="20dp"
+                card_view:cardCornerRadius="4dp">
 
 
-                    <ImageView
-                        android:id="@+id/ivImage"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:padding="20dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/view2"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_flipkart"
-                        tools:ignore="VectorDrawableCompat" />
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        android:thicknessRatio="1.9"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="#000"
+                        app:strokeWidth="@dimen/cardview_compat_inset_shadow">
 
-                </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tvCompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/view2"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toEndOf="@+id/view2"
-                    android:layout_toRightOf="@+id/view2"
-                    android:textStyle="bold|italic"
-                    android:text="Ekart Logistics"
-                    android:textColor="#000" />
+                        <ImageView
+                            android:id="@+id/ivImage"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_flipkart"
+                            android:contentDescription="@string/todo"
+                            tools:ignore="VectorDrawableCompat" />
 
-                <TextView
-                    android:id="@+id/tvTimings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/view2"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toEndOf="@+id/view2"
-                    android:layout_toRightOf="@+id/view2"
-                    android:text="20-Aug, 9 am | 4 hours"
-                    android:textSize="12sp"
-                    android:textColor="#000" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tvAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/view2"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="-30dp"
-                    android:layout_toEndOf="@+id/view2"
-                    android:layout_toRightOf="@+id/view2"
-                    android:textSize="12sp"
-                    android:text="Baramunda, Bhubaneswar"
-                    android:textColor="#000" />
+                    <TextView
+                        android:id="@+id/tvCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/view2"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toEndOf="@+id/view2"
+                        android:layout_toRightOf="@+id/view2"
+                        android:textStyle="bold|italic"
+                        android:text="@string/ekart_logistics"
+                        android:textColor="#000" />
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tvTimings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/view2"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toEndOf="@+id/view2"
+                        android:layout_toRightOf="@+id/view2"
+                        android:text="@string/_20_aug_9_am_4_hours"
+                        android:textSize="12sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/view2"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="-30dp"
+                        android:layout_toEndOf="@+id/view2"
+                        android:layout_toRightOf="@+id/view2"
+                        android:textSize="12sp"
+                        android:text="@string/baramunda_bhubaneswar"
+                        android:textColor="#000" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <Space
                 android:layout_width="match_parent"
@@ -150,7 +151,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Please report 30 minutes before your slot timings." />
+                android:text="@string/please_report_30_minutes_before_your_slot_timings" />
 
             <Space
                 android:layout_width="match_parent"
@@ -166,5 +167,4 @@
 
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 </ScrollView>

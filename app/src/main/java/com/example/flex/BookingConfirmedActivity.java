@@ -2,9 +2,15 @@ package com.example.flex;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,14 +31,26 @@ public class BookingConfirmedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_confirmed);
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1db945")));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageView iv = (ImageView) findViewById(R.id.ivHouse);
-        TextView tvCompany = (TextView) findViewById(R.id.tvCompany);
-        TextView tvTimings = (TextView) findViewById(R.id.tvTimings);
-        TextView tvAddress = (TextView) findViewById(R.id.tvAddress);
-        ImageView ivCompany = (ImageView) findViewById(R.id.ivImage);
+        final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        Spannable text=new SpannableString(getSupportActionBar().getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(text);
+
+        TextView textView=findViewById(R.id.bookingConfirmedTitle);
+        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont);
+
+        ImageView iv=findViewById(R.id.ivHouse);
+        TextView tvCompany=findViewById(R.id.tvCompany);
+        TextView tvTimings=findViewById(R.id.tvTimings);
+        TextView tvAddress=findViewById(R.id.tvAddress);
+        ImageView ivCompany=findViewById(R.id.ivImage);
 
         Intent it = getIntent();
 

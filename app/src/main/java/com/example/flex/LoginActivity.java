@@ -3,6 +3,7 @@ package com.example.flex;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText etEmailPhone,etPassword;
     Button btnLogin;
-    TextView tvForgotPassword,tvRegister;
+    TextView tvForgotPassword, tvRegister, tvFont;
     FirebaseAuth auth;
     View parentLayout;
 
@@ -36,11 +37,14 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        etEmailPhone = (EditText)findViewById(R.id.etEmailPhone);
-        etPassword = (EditText)findViewById(R.id.etPassword);
-        btnLogin = (Button)findViewById(R.id.btnProfile);
-        tvForgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
-        tvRegister = (TextView)findViewById(R.id.tvRegister);
+        etEmailPhone=findViewById(R.id.etEmailPhone);
+        tvFont=findViewById(R.id.tvFont);
+        Typeface myFont=Typeface.createFromAsset(getAssets(), "fonts/coolvetica_i.ttf");
+        tvFont.setTypeface(myFont);
+        etPassword=findViewById(R.id.etPassword);
+        btnLogin=findViewById(R.id.btnProfile);
+        tvForgotPassword=findViewById(R.id.tvForgotPassword);
+        tvRegister=findViewById(R.id.tvRegister);
         parentLayout = findViewById(android.R.id.content);
 
         auth = FirebaseAuth.getInstance();

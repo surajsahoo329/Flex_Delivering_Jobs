@@ -3,6 +3,8 @@ package com.example.flex;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity implements ValueEventListener {
 
     EditText etName,etEmail,etPhone,etPassword,etConfirmPassword;
@@ -34,18 +39,24 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
     View parentLayout;
     static int registerFlag = 0;
 
+    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        etName = (EditText)findViewById(R.id.etName);
-        etEmail = (EditText)findViewById(R.id.etEmail);
-        etPhone = (EditText)findViewById(R.id.etPhone);
-        etPassword = (EditText)findViewById(R.id.etPassword);
-        etConfirmPassword = (EditText)findViewById(R.id.etConfirmPassword);
-        btnSignUp = (Button)findViewById(R.id.btnProfile);
-        tvLogin = (TextView)findViewById(R.id.tvLogin);
+
+        TextView textView=findViewById(R.id.createAccTitle);
+        Typeface myFont=Typeface.createFromAsset(Objects.requireNonNull(this).getAssets(), "fonts/coolvetica_i.ttf");
+        textView.setTypeface(myFont);
+
+        etName=findViewById(R.id.etName);
+        etEmail=findViewById(R.id.etEmail);
+        etPhone=findViewById(R.id.etPhone);
+        etPassword=findViewById(R.id.etPassword);
+        etConfirmPassword=findViewById(R.id.etConfirmPassword);
+        btnSignUp=findViewById(R.id.btnProfile);
+        tvLogin=findViewById(R.id.tvLogin);
         auth = FirebaseAuth.getInstance();
         parentLayout = findViewById(android.R.id.content);
 
@@ -66,8 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                 String password = etPassword.getText().toString().trim();
                 String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-                if(name.length()==0)
-                {
+                if(name.length()==0) {
                     Snackbar snackbar = Snackbar.make(parentLayout, "Please enter your name ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -80,9 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                     snackbar.show();
 
                     etName.requestFocus();
-                }
-                else if(phone_no.length()==0)
-                {
+                } else if(phone_no.length()==0) {
                     Snackbar.make(parentLayout,"Please enter your phone number ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -95,9 +103,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .show();
 
                     etPhone.requestFocus();
-                }
-                else if(email.length()==0)
-                {
+                } else if(email.length()==0) {
                     Snackbar.make(parentLayout,"Please enter your email ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -109,9 +115,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .setActionTextColor(getResources().getColor(android.R.color.background_light))
                             .show();
                     etEmail.requestFocus();
-                }
-                else if(password.length()==0)
-                {
+                } else if(password.length()==0) {
                     Snackbar.make(parentLayout,"Please enter your password ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -123,9 +127,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .setActionTextColor(getResources().getColor(android.R.color.background_light))
                             .show();
                     etPassword.requestFocus();
-                }
-                else if(password.length()<8)
-                {
+                } else if(password.length()<8) {
                     Snackbar.make(parentLayout,"Password must be at least 8 characters ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -137,9 +139,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .setActionTextColor(getResources().getColor(android.R.color.background_light))
                             .show();
                     etPassword.requestFocus();
-                }
-                else if(confirmPassword.length()==0)
-                {
+                } else if(confirmPassword.length()==0) {
                     Snackbar.make(parentLayout,"Please confirm your password ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -152,9 +152,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .show();
 
                     etConfirmPassword.requestFocus();
-                }
-                else if(!confirmPassword.equals(password))
-                {
+                } else if(!confirmPassword.equals(password)) {
                     Snackbar.make(parentLayout,"Password and confirm password fields do not match ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -167,8 +165,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .show();
 
                     etConfirmPassword.requestFocus();
-                }
-                else {
+                } else {
 
                     addUser();
                     addFeedback();
