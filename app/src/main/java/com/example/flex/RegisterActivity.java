@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,7 +95,20 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             .show();
 
                     etPhone.requestFocus();
-                } else if(email.length()==0) {
+                } else if (phone_no.length() != 10) {
+                    Snackbar.make(parentLayout, "Invalid phone number ", Snackbar.LENGTH_LONG)
+                            .setDuration(3000)
+                            .setAction("Close", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            })
+                            .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                            .show();
+
+                    etPhone.requestFocus();
+                } else if (email.length() == 0) {
                     Snackbar.make(parentLayout,"Please enter your email ", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -227,9 +239,8 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
         final String password=etPassword.getText().toString().trim();
         final int DLFlag = 0, PhotoFlag = 0;
 
-        if(!TextUtils.isEmpty(name)){
 
-            final ProgressDialog pd = ProgressDialog.show(RegisterActivity.this,"Creating account","Please wait",true);
+        final ProgressDialog pd=ProgressDialog.show(RegisterActivity.this, "Creating account", "Please wait", true);
 
 
             auth.createUserWithEmailAndPassword(mail, password)
@@ -266,68 +277,6 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
                             }
                         }
                     });
-
-        }
-        else{
-
-            Snackbar.make(parentLayout,"Please enter your name ", Snackbar.LENGTH_LONG)
-                    .setDuration(5000)
-                    .setAction("Close", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    })
-                    .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                    .show();
-
-        }
-
-        if(TextUtils.isEmpty(mail))
-        {
-            Snackbar.make(parentLayout,"Please enter your email ", Snackbar.LENGTH_LONG)
-                    .setDuration(5000)
-                    .setAction("Close", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    })
-                    .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                    .show();
-
-        }
-
-
-        if(TextUtils.isEmpty(phone))
-        {
-            Snackbar.make(parentLayout,"Please enter your phone number ", Snackbar.LENGTH_LONG)
-                    .setDuration(5000)
-                    .setAction("Close", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    })
-                    .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                    .show();
-
-        }
-
-
-        if(TextUtils.isEmpty(password))
-        {
-            Snackbar.make(parentLayout,"Please enter your password ", Snackbar.LENGTH_LONG)
-                    .setDuration(5000)
-                    .setAction("Close", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    })
-                    .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                    .show();
-        }
 
     }
 

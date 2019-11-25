@@ -87,7 +87,8 @@
                     android:thicknessRatio="1.9"
                     app:cardCornerRadius="10dp"
                     app:strokeColor="#000"
-                    app:strokeWidth="@dimen/cardview_compat_inset_shadow">
+                    app:strokeWidth="@dimen/cardview_compat_inset_shadow"
+                    tools:ignore="PrivateResource">
 
                     <ImageView
                         android:id="@+id/ivImage"
@@ -160,7 +161,7 @@
             android:textStyle="bold"
             android:textColor="#000"
             android:visibility="gone"
-            android:paddingTop="10dp"
+            android:paddingTop="20dp"
             android:paddingBottom="10dp"
             android:drawableRight="@drawable/ic_done"
             android:drawableEnd="@drawable/ic_done"

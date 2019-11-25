@@ -82,8 +82,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 updateName = etName.getText().toString();
                 updatePhone = etPhone.getText().toString();
 
-                if(updatePhone.length() == 0 && updateName.length() == 0)
-                {
+                if (updatePhone.length() == 0 && updateName.length() == 0) {
                     Snackbar.make(parentLayout, "Please enter your name/phone number", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -95,9 +94,19 @@ public class EditProfileActivity extends AppCompatActivity {
                             .setActionTextColor(getResources().getColor(android.R.color.background_light))
                             .show();
 
-                }
-                else
-                {
+                } else if (updatePhone.length() != 10) {
+                    Snackbar.make(parentLayout, "Please enter a valid phone number", Snackbar.LENGTH_LONG)
+                            .setDuration(3000)
+                            .setAction("Close", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            })
+                            .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                            .show();
+
+                } else {
                     ValueEventListener userListener=new ValueEventListener() {
 
                         @Override
@@ -164,7 +173,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         Intent it = new Intent(getApplicationContext(),MainActivity.class);
         MainActivity.flag = 1;
