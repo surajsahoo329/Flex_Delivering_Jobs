@@ -3,6 +3,7 @@ package com.example.flex;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,10 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String id, name, getImageUrl;
     ImageView imageView;
 
+    @RequiresApi(api=Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, android.R.color.background_light));// set status background white
+        }
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         toolbar.setTitle("Flex");
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.background_dark));
@@ -125,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getUName();
 
-        if(ResetPasswordActivity.resetPass == 1)
-        {
+        if (ResetPasswordActivity.resetPass == 1) {
             Snackbar.make(parentLayout,"Password changed successfully", Snackbar.LENGTH_LONG)
                     .setDuration(3000)
                     .setAction("Close", new View.OnClickListener() {
@@ -147,10 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment_container, new HomeFragment());
             ft.commit();
-        }
-
-        else
-        {
+        } else {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment_container, new ProfileFragment());

@@ -108,6 +108,11 @@
     <string name="phone">Phone</string>
     <string name="location">Location</string>
     <string name="home">Home</string>
+    <string name="_11_aug_9_am_4_hours">11-Aug, 9 am | 4 hours</string>
+    <string name="profile">Profile</string>
+    <string name="your_slots">Your Slots</string>
+    <string name="share">Share</string>
+    <string name="log_out">Log out</string>
 
 </resources>
 

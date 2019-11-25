@@ -18,9 +18,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 
@@ -36,6 +38,13 @@ public class InformationActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(InformationActivity.this, android.R.color.background_light));// set status background white
+        }
 
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
@@ -74,6 +83,7 @@ public class InformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                assert msg1 != null;
                 if(msg1.equals("1")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -81,6 +91,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(callIntent);
                 }
 
+                assert msg2 != null;
                 if(msg2.equals("2")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -88,6 +99,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(callIntent);
                 }
 
+                assert msg3 != null;
                 if(msg3.equals("3")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -95,6 +107,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(callIntent);
                 }
 
+                assert msg4 != null;
                 if(msg4.equals("4")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -102,6 +115,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(callIntent);
                 }
 
+                assert msg5 != null;
                 if(msg5.equals("5")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -109,6 +123,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(callIntent);
                 }
 
+                assert msg6 != null;
                 if(msg6.equals("6")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -116,6 +131,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(callIntent);
                 }
 
+                assert msg7 != null;
                 if(msg7.equals("7")) {
 
                     Intent callIntent=new Intent(Intent.ACTION_DIAL);
@@ -130,6 +146,7 @@ public class InformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                assert msg1 != null;
                 if(msg1.equals("1")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -144,6 +161,7 @@ public class InformationActivity extends AppCompatActivity {
                     }, 1000);
                 }
 
+                assert msg2 != null;
                 if(msg2.equals("2")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -158,6 +176,7 @@ public class InformationActivity extends AppCompatActivity {
                     }, 1000);
                 }
 
+                assert msg3 != null;
                 if(msg3.equals("3")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -172,6 +191,7 @@ public class InformationActivity extends AppCompatActivity {
                     }, 1000);
                 }
 
+                assert msg4 != null;
                 if(msg4.equals("4")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -186,6 +206,7 @@ public class InformationActivity extends AppCompatActivity {
                     }, 1000);
                 }
 
+                assert msg5 != null;
                 if(msg5.equals("5")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -200,6 +221,7 @@ public class InformationActivity extends AppCompatActivity {
                     }, 1000);
                 }
 
+                assert msg6 != null;
                 if(msg6.equals("6")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -214,6 +236,7 @@ public class InformationActivity extends AppCompatActivity {
                     }, 1000);
                 }
 
+                assert msg7 != null;
                 if(msg7.equals("7")) {
 
                     new Handler().postDelayed(new Runnable() {
@@ -234,6 +257,7 @@ public class InformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                assert msg1 != null;
                 if(msg1.equals("1")) {
 
                     Uri uri=Uri.parse("https://www.ekartlogistics.com/");
@@ -241,6 +265,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                assert msg2 != null;
                 if(msg2.equals("2")) {
 
                     Uri uri=Uri.parse("https://www.fedex.com/en-in/home.html");
@@ -250,6 +275,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                assert msg3 != null;
                 if(msg3.equals("3")) {
 
                     Uri uri=Uri.parse("https://www.aramex.com/");
@@ -257,6 +283,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                assert msg4 != null;
                 if(msg4.equals("4")) {
 
                     Uri uri=Uri.parse("https://www.delhivery.com/");
@@ -264,6 +291,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                assert msg5 != null;
                 if(msg5.equals("5")) {
 
                     Uri uri=Uri.parse("https://www.bluedart.com/");
@@ -271,6 +299,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                assert msg6 != null;
                 if(msg6.equals("6")) {
 
                     Uri uri=Uri.parse("http://www.dtdc.in/");
@@ -278,6 +307,7 @@ public class InformationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                assert msg7 != null;
                 if(msg7.equals("7")) {
 
                     Uri uri=Uri.parse("https://www.indiapost.gov.in/");
@@ -289,6 +319,7 @@ public class InformationActivity extends AppCompatActivity {
         });
 
 
+        assert msg1 != null;
         if(msg1.equals("1")) {
 
             tv.setText("Ekart Logistics");
@@ -299,6 +330,7 @@ public class InformationActivity extends AppCompatActivity {
 
         }
 
+        assert msg2 != null;
         if(msg2.equals("2")){
 
             tv.setText("Fedex");
@@ -309,6 +341,7 @@ public class InformationActivity extends AppCompatActivity {
 
         }
 
+        assert msg3 != null;
         if(msg3.equals("3")){
 
             tv.setText("Aramex");
@@ -319,6 +352,7 @@ public class InformationActivity extends AppCompatActivity {
 
         }
 
+        assert msg4 != null;
         if(msg4.equals("4")){
 
             tv.setText("Delhivery");
@@ -333,6 +367,7 @@ public class InformationActivity extends AppCompatActivity {
 
         }
 
+        assert msg5 != null;
         if(msg5.equals("5")){
 
             tv.setText("Blue Dart");
@@ -343,6 +378,7 @@ public class InformationActivity extends AppCompatActivity {
 
         }
 
+        assert msg6 != null;
         if(msg6.equals("6")){
 
             tv.setText("DTDC");
@@ -353,6 +389,7 @@ public class InformationActivity extends AppCompatActivity {
 
         }
 
+        assert msg7 != null;
         if(msg7.equals("7")){
 
             tv.setText("Indian Post");
@@ -367,7 +404,7 @@ public class InformationActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         Intent it = new Intent(getApplicationContext(),MainActivity.class);
         startActivityForResult(it,0);

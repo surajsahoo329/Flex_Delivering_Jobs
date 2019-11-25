@@ -1,6 +1,7 @@
 package com.example.flex;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,11 +32,18 @@ public class ViewPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_photo);
 
-        viewPhoto = (ImageView) findViewById(R.id.viewPhotoOnClick);
+        viewPhoto=findViewById(R.id.viewPhotoOnClick);
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         checkEmail = user.getEmail();
         parentLayout = findViewById(android.R.id.content);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(ViewPhotoActivity.this, android.R.color.background_light));// set status background white
+        }
 
         final StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
         final StorageReference imgRef = mStorageRef.child(checkEmail+"/photo.jpg");

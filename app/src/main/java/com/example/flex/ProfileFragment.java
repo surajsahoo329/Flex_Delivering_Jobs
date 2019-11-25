@@ -156,6 +156,7 @@ public class ProfileFragment extends Fragment {
         assert refActivity != null;
         parentLayout = refActivity.findViewById(android.R.id.content);
         parentHolder = inflater.inflate(R.layout.fragment_profile, container ,false);
+
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
