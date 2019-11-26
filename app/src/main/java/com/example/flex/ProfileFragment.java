@@ -169,7 +169,7 @@ public class ProfileFragment extends Fragment {
 
         final ProgressDialog pd = ProgressDialog.show(refActivity,"Loading account","Please wait...",true);
 
-        if(EditProfileActivity.updateFlag == 1) {
+        if (EditFragment.updateFlag == 1) {
             pd.dismiss();
 
             Snackbar.make(parentLayout,"Profile updated", Snackbar.LENGTH_LONG)
@@ -185,7 +185,7 @@ public class ProfileFragment extends Fragment {
 
         }
 
-        EditProfileActivity.updateFlag = 0;
+        EditFragment.updateFlag=0;
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -519,7 +519,7 @@ public class ProfileFragment extends Fragment {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @SuppressWarnings("VisibleForTests")
                         @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                             progress=100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount();
                             pd.setMessage("Uploaded "+ (int)progress+"%");
 

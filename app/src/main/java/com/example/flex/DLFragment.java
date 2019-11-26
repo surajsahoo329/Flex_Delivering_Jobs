@@ -171,13 +171,73 @@ public class DLFragment extends Fragment {
         ImageView ivDownloadDL=parentHolder.findViewById(R.id.ivDownloadDL);
 
         Button submit=parentHolder.findViewById(R.id.btnSubmit);
-        Button dlDetails=parentHolder.findViewById(R.id.btnViewDLDetails);
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         checkEmail = user.getEmail();
         dbRef = FirebaseDatabase.getInstance().getReference();
         usrRef = dbRef.child("User");
+        dlRef=dbRef.child("DL");
+
+        final ProgressDialog pd=ProgressDialog.show(getActivity(), "Fetching data", "Hang on...", true);
+
+        ValueEventListener dlListener=new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    uemail=ds.child("userMail").getValue(String.class);
+
+                    assert uemail != null;
+                    if (uemail.equals(checkEmail)) {
+
+                        pd.dismiss();
+
+                        String id=ds.child("userId").getValue(String.class);
+
+                        assert id != null;
+                        String dlNumber=ds.child("licenseNumber").getValue(String.class);
+                        String name=ds.child("userName").getValue(String.class);
+                        String dob=ds.child("userDOB").getValue(String.class);
+                        String address=ds.child("userAddress").getValue(String.class);
+                        String issueDate=ds.child("licenseIssueDate").getValue(String.class);
+                        String expiryDate=ds.child("licenseExpiryDate").getValue(String.class);
+
+                        etDLNumber.setText(dlNumber);
+                        etDLName.setText(name);
+                        etDOB.setText(dob);
+                        etAddress.setText(address);
+                        etIssueDate.setText(issueDate);
+                        etExpiryDate.setText(expiryDate);
+
+                        break;
+
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                pd.dismiss();
+                Snackbar.make(parentLayout, "Try again", Snackbar.LENGTH_LONG)
+                        .setDuration(3000)
+                        .setAction("Close", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                        .show();
+            }
+        };
+
+        dlRef.addListenerForSingleValueEvent(dlListener);
+
 
         ivUploadDL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -518,7 +578,10 @@ public class DLFragment extends Fragment {
                                     dlRef.child(id).child("licenseExpiryDate").setValue(expiryDate);
                                     dlRef.child(id).child("userDLFlag").setValue(1);
 
-                                    startActivity(new Intent(refActivity, LicenseDetailsSubmittedActivity.class));
+                                    Intent intent=new Intent(getActivity(), MainActivity.class);
+                                    intent.putExtra("openDLSubmit", true);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    startActivity(intent);
 
                                     break;
 
@@ -550,70 +613,6 @@ public class DLFragment extends Fragment {
                 }
             }
 
-        });
-
-
-        dlDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dlRef=dbRef.child("DL");
-
-                ValueEventListener dlListener=new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                            uemail=ds.child("userMail").getValue(String.class);
-
-                            assert uemail != null;
-                            if (uemail.equals(checkEmail)) {
-
-                                dlFlag = ds.child("userDLFlag").getValue(Integer.class);
-
-                                if(dlFlag==1)
-                                    startActivity(new Intent(refActivity,LicenseDetailsActivity.class));
-                                else {
-                                    Snackbar.make(parentLayout, "Please submit your details first", Snackbar.LENGTH_LONG)
-                                            .setDuration(3000)
-                                            .setAction("Close", new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-
-                                                }
-                                            })
-                                            .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                                            .show();
-
-                                }
-
-                                break;
-
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        pd.dismiss();
-                        Snackbar.make(parentLayout, "Try again", Snackbar.LENGTH_LONG)
-                                .setDuration(3000)
-                                .setAction("Close", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                    }
-                                })
-                                .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                                .show();
-                    }
-                };
-
-                dlRef.addListenerForSingleValueEvent(dlListener);
-            }
         });
 
         return parentHolder;

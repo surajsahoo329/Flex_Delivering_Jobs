@@ -13,22 +13,6 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/tvDLTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:layout_gravity="start"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/driving_license"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
             android:layout_height="30dp" />
 
 
@@ -228,23 +212,10 @@
             android:textAllCaps="false"
             android:text="@string/submit"
             android:textColor="#ffffff" />
-        
+
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
-
-        <Button
-            android:id="@+id/btnViewDLDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/mybutton"
-            android:textAllCaps="false"
-            android:text="@string/view_license_details"
-            android:textColor="#ffffff" />
-
-
+            android:layout_height="30dp" />
 
         <EditText
             android:id="@+id/tvIDOB"
@@ -272,10 +243,6 @@
             android:hint="@string/expiry_date"
             android:importantForAutofill="no"
             android:inputType="date" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
 
     </LinearLayout>
 </ScrollView>

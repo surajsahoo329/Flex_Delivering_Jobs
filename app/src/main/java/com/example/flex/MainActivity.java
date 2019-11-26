@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -32,6 +34,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,12 +50,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
     FirebaseAuth auth;
-    TextView tvWelcome, tvEmail;
+    TextView tvWelcome, tvEmail, tvDLTabTitle;
     DatabaseReference dbRef,usrRef;
     String uEmail,checkEmail;
     String id, name, getImageUrl;
+    FrameLayout frameLayout;
+    boolean openDL, openProfile, openBooking, openDLSubmit;
+    private TabLayout tabLayout;
+
     ImageView imageView;
-    boolean openDL, openProfile, openBooking;
+    private ViewPager viewPager;
 
     @RequiresApi(api=Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -84,6 +91,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
+
+        frameLayout=findViewById(R.id.fragment_container);
+        tvDLTabTitle=findViewById(R.id.tvDLTabTitle);
+        viewPager=findViewById(R.id.viewPager);
+        tabLayout=findViewById(R.id.tabLayout);
 
 
         dbRef=FirebaseDatabase.getInstance().getReference();
@@ -141,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getUName();
 
-        if (ChangePasswordActivity.resetPass == 1) {
+        if (ChangePasswordFragment.resetPass == 1) {
             Snackbar.make(parentLayout,"Password changed successfully", Snackbar.LENGTH_LONG)
                     .setDuration(3000)
                     .setAction("Close", new View.OnClickListener() {
@@ -152,7 +164,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     })
                     .setActionTextColor(getResources().getColor(android.R.color.background_light))
                     .show();
-            ChangePasswordActivity.resetPass=0;
+            ChangePasswordFragment.resetPass=0;
+        }
+
+        if (EditFragment.updateFlag == 1) {
+            Snackbar.make(parentLayout, "Profile Updated", Snackbar.LENGTH_LONG)
+                    .setDuration(3000)
+                    .setAction("Close", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    })
+                    .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                    .show();
+
+            EditFragment.updateFlag=0;
         }
 
         FragmentManager fm=getSupportFragmentManager();
@@ -163,6 +190,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (extras != null && extras.containsKey("openProfile"))
             openProfile=extras.getBoolean("openProfile");
         if (openProfile) {
+
+            tvDLTabTitle.setVisibility(View.GONE);
             ft.replace(R.id.fragment_container, new ProfileFragment());
             ft.commit();
         }
@@ -178,12 +207,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (extras != null && extras.containsKey("openBooking"))
             openBooking=extras.getBoolean("openBooking");
         if (openBooking) {
+
+            tvDLTabTitle.setVisibility(View.GONE);
             ft.replace(R.id.fragment_container, new BookingFragment());
             ft.commit();
         }
 
+        if (extras != null && extras.containsKey("openDLSubmit"))
+            openDLSubmit=extras.getBoolean("openDLSubmit");
+        if (openDLSubmit) {
 
-        drawer.closeDrawer(GravityCompat.START);
+            Snackbar.make(parentLayout, "License Details Submitted", Snackbar.LENGTH_LONG)
+                    .setDuration(3000)
+                    .setAction("Close", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    })
+                    .setActionTextColor(getResources().getColor(android.R.color.background_light))
+                    .show();
+
+            frameLayout.setVisibility(View.GONE);
+            tvDLTabTitle.setVisibility(View.VISIBLE);
+            viewPager.setVisibility(View.VISIBLE);
+            tabLayout.setVisibility(View.VISIBLE);
+            TabAdapter adapter=new TabAdapter(getSupportFragmentManager());
+            adapter.addFragment(new DLFragment(), "Edit Details");
+            adapter.addFragment(new LicenseDetailsFragment(), "View Details");
+            viewPager.setAdapter(adapter);
+            tabLayout.setupWithViewPager(viewPager);
+            drawer.closeDrawer(GravityCompat.START);
+        }
 
     }
 
@@ -269,6 +324,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
 
             case R.id.nav_profile:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
                 ob=new ProfileFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
@@ -276,13 +335,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_dl:
-                ob=new DLFragment();
-                ft.replace(R.id.fragment_container,ob);
-                ft.addToBackStack(null);
-                ft.commit();
+                frameLayout.setVisibility(View.GONE);
+                tvDLTabTitle.setVisibility(View.VISIBLE);
+                viewPager.setVisibility(View.VISIBLE);
+                tabLayout.setVisibility(View.VISIBLE);
+                TabAdapter adapter=new TabAdapter(getSupportFragmentManager());
+                adapter.addFragment(new DLFragment(), "Edit Details");
+                adapter.addFragment(new LicenseDetailsFragment(), "View Details");
+                viewPager.setAdapter(adapter);
+                tabLayout.setupWithViewPager(viewPager);
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_booking:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
                 ob=new BookingFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
@@ -290,6 +358,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_slots:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
                 ob = new SlotFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
@@ -297,6 +369,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_contacts:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
                 ob = new ContactsFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
@@ -304,6 +380,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_feedback:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
                 ob = new FeedbackFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
@@ -311,6 +391,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_about:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
                 ob = new AboutFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
@@ -345,15 +429,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-     return true;
+
+        return true;
     }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
-
 
 
 }

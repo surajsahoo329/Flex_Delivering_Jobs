@@ -16,12 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".LicenseDetailsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".LicenseDetailsSubmittedActivity"
-            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".BookingFailedActivity"
             android:theme="@style/AppTheme" />
@@ -29,7 +24,7 @@
             android:name=".BookingConfirmedActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name=".ChangePasswordFragment"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -55,7 +50,7 @@
             android:name=".ViewPhotoActivity"
             android:icon="@drawable/delivery"
             android:label="View Photo"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
             android:icon="@drawable/delivery"
@@ -77,8 +72,7 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:icon="@drawable/delivery"
-            android:label="Forgot Activity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
     </application>
 

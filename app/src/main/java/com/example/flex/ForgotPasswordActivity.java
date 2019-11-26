@@ -1,12 +1,22 @@
 package com.example.flex;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,10 +28,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     EditText etEmail;
     Button btnResetPassword;
+    TextView textView;
     View parentLayout;
     static int sentMailFlag = 0;
 
@@ -38,14 +51,30 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(ContextCompat.getColor(ForgotPasswordActivity.this, android.R.color.background_light));// set status background white
         }
 
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        @SuppressLint("PrivateResource") final Drawable upArrow=getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(android.R.color.background_dark), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        Spannable text=new SpannableString(getSupportActionBar().getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(text);
+
+
         etEmail=findViewById(R.id.etEmail);
         btnResetPassword=findViewById(R.id.btnChPass);
         parentLayout=findViewById(android.R.id.content);
+        textView=findViewById(R.id.tvTryAgain);
 
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                textView.setVisibility(View.VISIBLE);
+
 
                 FirebaseAuth.getInstance().sendPasswordResetEmail(etEmail.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -81,6 +110,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        Intent intent=new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        return true;
+    }
+
 
     @Override
     public void onBackPressed() {
