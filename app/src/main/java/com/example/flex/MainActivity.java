@@ -323,17 +323,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment ob ;
         switch (menuItem.getItemId()) {
 
-            case R.id.nav_profile:
+            case R.id.nav_booking:
                 tvDLTabTitle.setVisibility(View.GONE);
                 viewPager.setVisibility(View.GONE);
                 tabLayout.setVisibility(View.GONE);
                 frameLayout.setVisibility(View.VISIBLE);
-                ob=new ProfileFragment();
+                ob=new BookingFragment();
+                ft.replace(R.id.fragment_container, ob);
+                ft.addToBackStack(null);
+                ft.commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.nav_slots:
+                tvDLTabTitle.setVisibility(View.GONE);
+                viewPager.setVisibility(View.GONE);
+                tabLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                ob=new SlotFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
+
             case R.id.nav_dl:
                 frameLayout.setVisibility(View.GONE);
                 tvDLTabTitle.setVisibility(View.VISIBLE);
@@ -346,28 +359,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 tabLayout.setupWithViewPager(viewPager);
                 drawer.closeDrawer(GravityCompat.START);
                 break;
-            case R.id.nav_booking:
+
+            case R.id.nav_profile:
                 tvDLTabTitle.setVisibility(View.GONE);
                 viewPager.setVisibility(View.GONE);
                 tabLayout.setVisibility(View.GONE);
                 frameLayout.setVisibility(View.VISIBLE);
-                ob=new BookingFragment();
+                ob=new ProfileFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
-            case R.id.nav_slots:
-                tvDLTabTitle.setVisibility(View.GONE);
-                viewPager.setVisibility(View.GONE);
-                tabLayout.setVisibility(View.GONE);
-                frameLayout.setVisibility(View.VISIBLE);
-                ob = new SlotFragment();
-                ft.replace(R.id.fragment_container,ob);
-                ft.addToBackStack(null);
-                ft.commit();
-                drawer.closeDrawer(GravityCompat.START);
-                break;
+
             case R.id.nav_contacts:
                 tvDLTabTitle.setVisibility(View.GONE);
                 viewPager.setVisibility(View.GONE);
@@ -379,6 +383,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
+
             case R.id.nav_feedback:
                 tvDLTabTitle.setVisibility(View.GONE);
                 viewPager.setVisibility(View.GONE);
@@ -390,6 +395,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
+
             case R.id.nav_about:
                 tvDLTabTitle.setVisibility(View.GONE);
                 viewPager.setVisibility(View.GONE);
@@ -401,6 +407,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
+
             case R.id.nav_share:
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
@@ -410,6 +417,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 i.putExtra(Intent.EXTRA_TEXT, message);
                 startActivity(Intent.createChooser(i, "Share Via"));
                 break;
+
             case R.id.nav_logout:
                 new AlertDialog.Builder(this)
                         .setIcon(R.drawable.ic_launcher_round)

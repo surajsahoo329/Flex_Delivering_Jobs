@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         pd.dismiss();
                                         Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("openProfile", true);
+                                        intent.putExtra("openBooking", true);
                                         overridePendingTransition(0, 0);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                         finish();

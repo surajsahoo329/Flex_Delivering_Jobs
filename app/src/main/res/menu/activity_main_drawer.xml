@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_account_box"
-            android:title="@string/profile"
-            />
 
-        <item
-            android:id="@+id/nav_dl"
-            android:icon="@drawable/ic_dl"
-            android:title="@string/driving_license"
-            />
 
         <item
             android:id="@+id/nav_booking"
@@ -23,6 +13,18 @@
             android:icon="@drawable/ic_slots"
             android:title="@string/your_slots"
             />
+
+        <item
+            android:id="@+id/nav_dl"
+            android:icon="@drawable/ic_dl"
+            android:title="@string/driving_license" />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_box"
+            android:title="@string/profile" />
+
+
         <item
             android:id="@+id/nav_contacts"
             android:icon="@drawable/ic_contacts"

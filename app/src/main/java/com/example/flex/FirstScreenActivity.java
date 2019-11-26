@@ -51,7 +51,7 @@ public class FirstScreenActivity extends Activity {
                 else
                 {
                     Intent intent=new Intent(FirstScreenActivity.this, MainActivity.class);
-                    intent.putExtra("openProfile", true);
+                    intent.putExtra("openBooking", true);
                     overridePendingTransition(0, 0);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     finish();
