@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,12 +47,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
     FirebaseAuth auth;
-    public  static int flag = 0;
     TextView tvWelcome, tvEmail;
     DatabaseReference dbRef,usrRef;
     String uEmail,checkEmail;
     String id, name, getImageUrl;
     ImageView imageView;
+    boolean openDL, openProfile, openBooking;
 
     @RequiresApi(api=Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -65,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, android.R.color.background_light));// set status background white
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w=getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         toolbar.setTitle("Flex");
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getUName();
 
-        if (ResetPasswordActivity.resetPass == 1) {
+        if (ChangePasswordActivity.resetPass == 1) {
             Snackbar.make(parentLayout,"Password changed successfully", Snackbar.LENGTH_LONG)
                     .setDuration(3000)
                     .setAction("Close", new View.OnClickListener() {
@@ -146,23 +152,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     })
                     .setActionTextColor(getResources().getColor(android.R.color.background_light))
                     .show();
-            ResetPasswordActivity.resetPass = 0;
+            ChangePasswordActivity.resetPass=0;
         }
 
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
 
-        if(flag == 0) {
+        Bundle extras=getIntent().getExtras();
 
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment_container, new HomeFragment());
-            ft.commit();
-        } else {
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
+        if (extras != null && extras.containsKey("openProfile"))
+            openProfile=extras.getBoolean("openProfile");
+        if (openProfile) {
             ft.replace(R.id.fragment_container, new ProfileFragment());
             ft.commit();
-
         }
+
+
+        if (extras != null && extras.containsKey("openDL"))
+            openDL=extras.getBoolean("openDL");
+        if (openDL) {
+            ft.replace(R.id.fragment_container, new DLFragment());
+            ft.commit();
+        }
+
+        if (extras != null && extras.containsKey("openBooking"))
+            openBooking=extras.getBoolean("openBooking");
+        if (openBooking) {
+            ft.replace(R.id.fragment_container, new BookingFragment());
+            ft.commit();
+        }
+
 
         drawer.closeDrawer(GravityCompat.START);
 
@@ -248,22 +267,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Fragment ob ;
         switch (menuItem.getItemId()) {
-            case R.id.nav_home:
-                ob = new HomeFragment();
-                ft.replace(R.id.fragment_container,ob);
-                ft.addToBackStack(null);
-                ft.commit();
-                drawer.closeDrawer(GravityCompat.START);
-                break;
+
             case R.id.nav_profile:
-                ob = new ProfileFragment();
+                ob=new ProfileFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_dl:
-                ob = new DLFragment();
+                ob=new DLFragment();
+                ft.replace(R.id.fragment_container,ob);
+                ft.addToBackStack(null);
+                ft.commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_booking:
+                ob=new BookingFragment();
                 ft.replace(R.id.fragment_container,ob);
                 ft.addToBackStack(null);
                 ft.commit();

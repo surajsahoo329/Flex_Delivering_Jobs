@@ -90,7 +90,7 @@
     <string name="send_feedback">Send Feedback</string>
     <string name="view_feedback">View Feedback</string>
     <string name="your_review">Your Review</string>
-    <string name="book_your_slots">Book your slots</string>
+    <string name="book_your_slot">Book your slot</string>
     <string name="choose_date">Choose date</string>
     <string name="book">Book</string>
     <string name="delete_acc">Delete Acc.</string>
@@ -113,6 +113,6 @@
     <string name="your_slots">Your Slots</string>
     <string name="share">Share</string>
     <string name="log_out">Log out</string>
-
+    <string name="booking">Booking</string>
 </resources>
 

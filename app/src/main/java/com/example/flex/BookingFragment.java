@@ -47,11 +47,12 @@ import java.util.Date;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+
+
+public class BookingFragment extends Fragment {
 
     private ArrayList<String> mImageUrls = new ArrayList<>();
 
@@ -74,7 +75,7 @@ public class HomeFragment extends Fragment {
     private String checkDate, checkID;
     private DatabaseReference assRef;
 
-    public HomeFragment() {
+    public BookingFragment() {
         // Required empty public constructor
 
     }
@@ -85,10 +86,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         refActivity = getActivity();
-        parentHolder = inflater.inflate(R.layout.fragment_home, container,
+        parentHolder=inflater.inflate(R.layout.fragment_booking, container,
                 false);
 
         parentLayout=refActivity.findViewById(android.R.id.content);
+
+        getImages();
 
         final Button btnBookSlot=parentHolder.findViewById(R.id.btnBookSlot);
         dbRef = FirebaseDatabase.getInstance().getReference();
@@ -291,6 +294,7 @@ public class HomeFragment extends Fragment {
                                                     @SuppressLint("SimpleDateFormat") SimpleDateFormat df=new SimpleDateFormat("dd-MMM-yyyy");
                                                     Date strDate = null;
                                                     try {
+                                                        assert date != null;
                                                         strDate = df.parse(date);
                                                     } catch (ParseException e) {
                                                         e.printStackTrace();
@@ -643,8 +647,6 @@ public class HomeFragment extends Fragment {
 
         });
 
-        getImages();
-
         return parentHolder;
 
     }
@@ -726,6 +728,7 @@ public class HomeFragment extends Fragment {
 
 
 }
+
 
 
 

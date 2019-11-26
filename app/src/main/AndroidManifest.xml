@@ -20,7 +20,7 @@
             android:name=".LicenseDetailsActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".LicenseDetailsDone"
+            android:name=".LicenseDetailsSubmittedActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".BookingFailedActivity"
@@ -29,7 +29,7 @@
             android:name=".BookingConfirmedActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name=".ChangePasswordActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -44,7 +44,7 @@
             android:name=".InformationActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".FirstScreen"
+            android:name=".FirstScreenActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,7 +75,7 @@
             android:label="Flex"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".ForgotPasswordActivity"
             android:icon="@drawable/delivery"
             android:label="Forgot Activity"
             android:theme="@style/AppTheme.NoActionBar"

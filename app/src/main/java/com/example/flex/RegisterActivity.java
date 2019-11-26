@@ -274,7 +274,7 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
 
                                 pd.dismiss();
                                 String id = databaseUser.push().getKey();
-                                User user = new User(id,name,mail,phone,password,DLFlag,PhotoFlag);
+                                User user=new User(id, name, mail, phone, DLFlag, PhotoFlag);
                                 assert id != null;
                                 databaseUser.child(id).setValue(user);
                                 registerFlag = 1;

@@ -41,6 +41,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Company> {
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
+            assert mInflater != null;
             convertView = mInflater.inflate(R.layout.list_slot, null);
             holder = new ViewHolder();
             holder.txtCompany=convertView.findViewById(R.id.tvCompany);

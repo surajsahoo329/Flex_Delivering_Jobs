@@ -2,20 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
-            android:title="@string/home"
-            />
-        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_account_box"
             android:title="@string/profile"
             />
+
         <item
             android:id="@+id/nav_dl"
             android:icon="@drawable/ic_dl"
             android:title="@string/driving_license"
             />
+
+        <item
+            android:id="@+id/nav_booking"
+            android:icon="@drawable/ic_booking"
+            android:title="@string/booking" />
+
         <item
             android:id="@+id/nav_slots"
             android:icon="@drawable/ic_slots"

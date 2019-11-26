@@ -47,14 +47,18 @@ import java.util.Objects;
 
 public class DeleteAccountActivity extends AppCompatActivity {
 
-    DatabaseReference usrRef, dbRef, fdbRef, slotRef, dlRef, hisRef;
-    String uEmail, password;
-    StorageReference mStorageReference;
-    FirebaseUser user;
-    EditText etDeletePass;
-    View parentLayout;
+    private DatabaseReference usrRef;
+    private DatabaseReference fdbRef;
+    private DatabaseReference slotRef;
+    private DatabaseReference dlRef;
+    private DatabaseReference hisRef;
+    private String uEmail, password;
+    private StorageReference mStorageReference;
+    private FirebaseUser user;
+    private EditText etDeletePass;
+    private View parentLayout;
     static int deleteAccountFlag = 0;
-    ProgressDialog pd;
+    private ProgressDialog pd;
 
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
@@ -88,7 +92,7 @@ public class DeleteAccountActivity extends AppCompatActivity {
         assert user != null;
         uEmail = user.getEmail();
         mStorageReference = FirebaseStorage.getInstance().getReference();
-        dbRef= FirebaseDatabase.getInstance().getReference();
+        DatabaseReference dbRef=FirebaseDatabase.getInstance().getReference();
         usrRef=dbRef.child("User");
         fdbRef=dbRef.child("Feedback");
         slotRef=dbRef.child("Slot");
@@ -310,9 +314,25 @@ public class DeleteAccountActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        Intent it = new Intent(getApplicationContext(),MainActivity.class);
-        MainActivity.flag = 1;
-        startActivityForResult(it,0);
+        Intent intent=new Intent(DeleteAccountActivity.this, MainActivity.class);
+        intent.putExtra("openProfile", true);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        startActivity(intent);
+        finish();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent=new Intent(DeleteAccountActivity.this, MainActivity.class);
+        intent.putExtra("openProfile", true);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        startActivity(intent);
+        finish();
     }
 }

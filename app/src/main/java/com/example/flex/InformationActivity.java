@@ -406,16 +406,23 @@ public class InformationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        Intent it = new Intent(getApplicationContext(),MainActivity.class);
-        startActivityForResult(it,0);
+        Intent intent=new Intent(InformationActivity.this, MainActivity.class);
+        intent.putExtra("openBooking", true);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
+        startActivity(intent);
         return true;
     }
 
     @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(InformationActivity.this,MainActivity.class));
+        Intent intent=new Intent(InformationActivity.this, MainActivity.class);
+        intent.putExtra("openBooking", true);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
+        startActivity(intent);
     }
 }

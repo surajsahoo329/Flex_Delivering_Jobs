@@ -39,7 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class ResetPasswordActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
 
     EditText etCurrentPassword;
     EditText etNewPassword;
@@ -55,13 +55,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset_password);
+        setContentView(R.layout.activity_change_password);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(ResetPasswordActivity.this, android.R.color.background_light));// set status background white
+            getWindow().setStatusBarColor(ContextCompat.getColor(ChangePasswordActivity.this, android.R.color.background_light));// set status background white
         }
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
@@ -127,7 +127,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 }
                 else {
 
-                    final ProgressDialog pd = ProgressDialog.show(ResetPasswordActivity.this,"Changing password","Please wait...",true);
+                    final ProgressDialog pd=ProgressDialog.show(ChangePasswordActivity.this, "Changing password", "Please wait...", true);
                     ValueEventListener userListener = new ValueEventListener() {
 
                         @Override
@@ -158,8 +158,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                                                             pd.dismiss();
                                                             resetPass = 1;
-                                                            usrRef.child(id).child("userPass").setValue(confirmPass);
-                                                            startActivity(new Intent(ResetPasswordActivity.this, MainActivity.class));
+                                                            Intent intent=new Intent(ChangePasswordActivity.this, MainActivity.class);
+                                                            intent.putExtra("openProfile", true);
+                                                            overridePendingTransition(0, 0);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                            finish();
+                                                            startActivity(intent);
+                                                            finish();
 
                                                         } else {
 
@@ -206,7 +211,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            Toast.makeText(ResetPasswordActivity.this, databaseError.getCode(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(ChangePasswordActivity.this, databaseError.getCode(), Toast.LENGTH_LONG).show();
                         }
                     };
 
@@ -223,7 +228,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
    @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(ResetPasswordActivity.this, EditProfileActivity.class));
+       startActivity(new Intent(ChangePasswordActivity.this, EditProfileActivity.class));
         finish();
     }
 

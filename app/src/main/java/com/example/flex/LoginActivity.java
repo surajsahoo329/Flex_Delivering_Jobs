@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                     .setActionTextColor(getResources().getColor(android.R.color.background_light))
                     .show();
 
+            DeleteAccountActivity.deleteAccountFlag=0;
+
         }
 
         if(RegisterActivity.registerFlag == 1)
@@ -87,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-        if(ForgotPassword.sentMailFlag == 1)
+        if (ForgotPasswordActivity.sentMailFlag == 1)
         {
             Snackbar.make(parentLayout,"Please check your email", Snackbar.LENGTH_LONG)
                     .setDuration(3000)
@@ -166,8 +168,12 @@ public class LoginActivity extends AppCompatActivity {
                                     } else {
 
                                         pd.dismiss();
-                                        Intent it = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(it);
+                                        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("openProfile", true);
+                                        overridePendingTransition(0, 0);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        finish();
+                                        startActivity(intent);
                                         finish();
 
                                     }
@@ -182,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(LoginActivity.this,ForgotPassword.class));
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
                 finish();
 
             }

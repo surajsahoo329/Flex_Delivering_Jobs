@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgotPassword extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
 
     EditText etEmail;
     Button btnResetPassword;
@@ -35,7 +35,7 @@ public class ForgotPassword extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(ForgotPassword.this, android.R.color.background_light));// set status background white
+            getWindow().setStatusBarColor(ContextCompat.getColor(ForgotPasswordActivity.this, android.R.color.background_light));// set status background white
         }
 
         etEmail=findViewById(R.id.etEmail);
@@ -52,12 +52,12 @@ public class ForgotPassword extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
-                                ProgressDialog pd =ProgressDialog.show(ForgotPassword.this,"Sending email","Please wait...",true);
+                                ProgressDialog pd=ProgressDialog.show(ForgotPasswordActivity.this, "Sending email", "Please wait...", true);
 
                                 if( task.isSuccessful()) {
                                     pd.dismiss();
                                     sentMailFlag = 1;
-                                    Intent it = new Intent(ForgotPassword.this, LoginActivity.class);
+                                    Intent it=new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                                     startActivity(it);
                                     finish();
                                 } else {
@@ -85,7 +85,7 @@ public class ForgotPassword extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(ForgotPassword.this,LoginActivity.class));
+        startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
         finish();
     }
 }

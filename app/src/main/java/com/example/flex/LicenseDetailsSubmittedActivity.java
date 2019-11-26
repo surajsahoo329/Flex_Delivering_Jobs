@@ -15,25 +15,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
-public class LicenseDetailsDone extends AppCompatActivity {
+public class LicenseDetailsSubmittedActivity extends AppCompatActivity {
 
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_license_details_done);
+        setContentView(R.layout.activity_license_details_submitted);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(LicenseDetailsDone.this, android.R.color.background_light));// set status background white
+            getWindow().setStatusBarColor(ContextCompat.getColor(LicenseDetailsSubmittedActivity.this, android.R.color.background_light));// set status background white
         }
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable()); // Add Color.Parse("#000") inside ColorDrawable() for color change
@@ -54,7 +55,7 @@ public class LicenseDetailsDone extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(LicenseDetailsDone.this,LicenseDetailsActivity.class));
+                startActivity(new Intent(LicenseDetailsSubmittedActivity.this, LicenseDetailsActivity.class));
                 finish();
             }
         });
@@ -62,7 +63,7 @@ public class LicenseDetailsDone extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         Intent it = new Intent(getApplicationContext(),MainActivity.class);
         startActivityForResult(it,0);
@@ -72,7 +73,7 @@ public class LicenseDetailsDone extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(LicenseDetailsDone.this,MainActivity.class));
+        startActivity(new Intent(LicenseDetailsSubmittedActivity.this, MainActivity.class));
         finish();
     }
 }

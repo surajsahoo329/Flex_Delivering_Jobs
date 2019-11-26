@@ -377,6 +377,7 @@ public class ProfileFragment extends Fragment {
 
                                     uEmail = ds.child("userMail").getValue(String.class);
 
+                                    assert uEmail != null;
                                     if (uEmail.equals(checkEmail)) {
 
                                         String id = ds.child("userId").getValue(String.class);
@@ -422,7 +423,7 @@ public class ProfileFragment extends Fragment {
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                         progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                         pd.setMessage("Uploaded "+ (int)progress+"%");
 
@@ -519,7 +520,7 @@ public class ProfileFragment extends Fragment {
                         @SuppressWarnings("VisibleForTests")
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                            progress=100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount();
                             pd.setMessage("Uploaded "+ (int)progress+"%");
 
                         }

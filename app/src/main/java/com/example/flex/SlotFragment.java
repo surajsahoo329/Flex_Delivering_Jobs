@@ -70,6 +70,7 @@ public class SlotFragment extends Fragment {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container,
@@ -96,7 +97,6 @@ public class SlotFragment extends Fragment {
         relativeLayout=parentHolder.findViewById(R.id.relLayout);
         historyListViewSlot=parentHolder.findViewById(R.id.historyListViewSlot);
         companies=new ArrayList<>();
-
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("Slot");

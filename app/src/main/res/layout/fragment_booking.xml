@@ -7,8 +7,8 @@
     android:orientation="vertical">
 
         <LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true">
 
@@ -19,7 +19,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/home"
+            android:text="@string/booking"
             android:textColor="#000"
             android:textSize="30sp"
             android:layout_marginLeft="20dp"
@@ -28,7 +28,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
+            android:clipToPadding="false"
             android:orientation="horizontal" />
 
 
@@ -39,7 +40,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/book_your_slots"
+            android:text="@string/book_your_slot"
             android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold"

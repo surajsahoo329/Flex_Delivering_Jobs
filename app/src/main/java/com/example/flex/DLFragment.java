@@ -93,6 +93,7 @@ public class DLFragment extends Fragment {
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalFilesDir(context,destDirectory, "Flex DL" + ".pdf");
 
+        assert downloadManager != null;
         downloadManager.enqueue(request);
 
     }
@@ -517,7 +518,7 @@ public class DLFragment extends Fragment {
                                     dlRef.child(id).child("licenseExpiryDate").setValue(expiryDate);
                                     dlRef.child(id).child("userDLFlag").setValue(1);
 
-                                    startActivity(new Intent(refActivity, LicenseDetailsDone.class));
+                                    startActivity(new Intent(refActivity, LicenseDetailsSubmittedActivity.class));
 
                                     break;
 
@@ -735,7 +736,7 @@ public class DLFragment extends Fragment {
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                         progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                         pd.setMessage("Uploaded "+ (int)progress+"%");
 

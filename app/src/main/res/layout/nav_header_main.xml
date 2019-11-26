@@ -3,7 +3,7 @@
     android:id="@+id/nav_header"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
+    android:layout_height="180dp"
     android:background="@drawable/nav"
     android:gravity="start"
     android:padding="20dp"
@@ -11,6 +11,7 @@
 
     <ImageView
         android:id="@+id/nav_header_imageView"
+        android:layout_marginTop="10dp"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:contentDescription="@string/todo"

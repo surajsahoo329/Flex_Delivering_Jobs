@@ -102,7 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             .setActionTextColor(getResources().getColor(android.R.color.background_light))
                             .show();
 
-                } else if (updatePhone.length() != 10) {
+                } else if (updatePhone.length() != 10 && updatePhone.length() != 0) {
                     Snackbar.make(parentLayout, "Please enter a valid phone number", Snackbar.LENGTH_LONG)
                             .setDuration(3000)
                             .setAction("Close", new View.OnClickListener() {
@@ -148,9 +148,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
                             }
 
-                            Intent it=new Intent(EditProfileActivity.this, MainActivity.class);
-                            MainActivity.flag=1;
-                            startActivityForResult(it, 0);
+                            Intent intent=new Intent(EditProfileActivity.this, MainActivity.class);
+                            intent.putExtra("openProfile", true);
+                            overridePendingTransition(0, 0);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            finish();
+                            startActivity(intent);
                             finish();
 
 
@@ -173,7 +176,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(EditProfileActivity.this,ResetPasswordActivity.class));
+                startActivity(new Intent(EditProfileActivity.this, ChangePasswordActivity.class));
                 finish();
 
             }
@@ -183,18 +186,24 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        Intent it = new Intent(getApplicationContext(),MainActivity.class);
-        MainActivity.flag = 1;
-        startActivityForResult(it,0);
+        Intent intent=new Intent(EditProfileActivity.this, MainActivity.class);
+        intent.putExtra("openProfile", true);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        startActivity(intent);
         return true;
     }
 
     @Override
     public void onBackPressed() {
 
-        Intent it = new Intent(getApplicationContext(),MainActivity.class);
-        MainActivity.flag = 1;
-        startActivityForResult(it,0);
+        Intent intent=new Intent(EditProfileActivity.this, MainActivity.class);
+        intent.putExtra("openProfile", true);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        startActivity(intent);
         finish();
 
     }
