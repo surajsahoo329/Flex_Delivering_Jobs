@@ -68,8 +68,8 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:icon="@drawable/delivery"
             android:label="Flex"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:icon="@drawable/delivery"

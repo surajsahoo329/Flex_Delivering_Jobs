@@ -5,6 +5,7 @@
     <!-- Customize your theme here. --> <!-- Selectable removes action bar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:fontFamily">@font/prod_sans_medium</item>

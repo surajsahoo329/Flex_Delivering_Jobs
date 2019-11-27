@@ -24,8 +24,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.bumptech.glide.Glide;
-
 import java.util.Objects;
 
 public class InformationActivity extends AppCompatActivity {
@@ -356,11 +354,7 @@ public class InformationActivity extends AppCompatActivity {
         if(msg4.equals("4")){
 
             tv.setText("Delhivery");
-
-            Glide.with(InformationActivity.this)
-                    .load("https://nexusvp.com/wp-content/uploads/2014/04/oie_JbUn8ia6Q3Zq.png")
-                    .into(iv);
-
+            iv.setImageResource(R.drawable.ic_delhivery);
             address.setText("N2-B2, CRP Ekamra Kanana Rd, N2, Block N2, IRC Village, Nayapalli, Bhubaneswar, Odisha 751015");
             phone.setText("07790018067");
             officeHours.setText("8am-6pm. Sundays closed.");
