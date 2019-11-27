@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     .setActionTextColor(getResources().getColor(android.R.color.background_light))
                     .show();
 
-            RegisterActivity.registerFlag = 0;
+            ForgotPasswordActivity.sentMailFlag=0;
 
         }
 

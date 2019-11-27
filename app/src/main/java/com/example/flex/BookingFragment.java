@@ -39,6 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,7 +51,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-
 
 public class BookingFragment extends Fragment {
 
@@ -110,6 +110,20 @@ public class BookingFragment extends Fragment {
         ArrayAdapter<String> arrWorkHours=new ArrayAdapter<>(refActivity, android.R.layout.simple_list_item_1, workHours);
         spWorkHours.setAdapter(arrWorkHours);
         spWorkHours.setOnItemSelectedListener(new workHoursClick());
+
+        try {
+            Field popup=Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow=(android.widget.ListPopupWindow) popup.get(spStartTime);
+
+            // Set popupWindow height to 500px
+            assert popupWindow != null;
+            popupWindow.setHeight(500);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
 
 
         tvIDate=parentHolder.findViewById(R.id.tvInvisibleDate);
@@ -690,6 +704,8 @@ public class BookingFragment extends Fragment {
         public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
+
+
     }
 
     public class workHoursClick implements AdapterView.OnItemSelectedListener
