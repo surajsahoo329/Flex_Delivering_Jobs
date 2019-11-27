@@ -65,7 +65,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="App developers"
+        android:text="@string/app_developers"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textStyle="bold" />
 

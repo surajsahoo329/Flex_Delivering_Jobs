@@ -117,5 +117,6 @@
     <string name="didn_t_receive_reset_password_link_please_try_again">Didn\'t receive reset password link? Please try again.</string>
     <string name="don_t_worry_just_give_us_your_registered_email_address_and_we_will_send_you_a_reset_password_link_shortly">Don\'t worry. Just give us your registered email address and we will send you a reset password link shortly.</string>
     <string name="please_enter_your_password_again_for_verification">Please enter your password again for verification</string>
+    <string name="app_developers">App developers</string>
 </resources>
 
