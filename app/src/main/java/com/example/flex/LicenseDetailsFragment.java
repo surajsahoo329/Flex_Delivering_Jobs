@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LicenseDetailsFragment extends Fragment {
 
 
-    FirebaseUser user;
+    private FirebaseUser user;
     private View parentLayout;
     private TextView tvDLNumber, tvName, tvDOB, tvAddress, tvIssueDate, tvExpiryDate;
     private String checkMail="", umail="", dlNumber, dlName, DOB, address, issueDate, expiryDate;

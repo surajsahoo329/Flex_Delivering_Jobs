@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             tvDLTabTitle.setVisibility(View.GONE);
             ft.replace(R.id.fragment_container, new ProfileFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
 
@@ -193,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             openDL=extras.getBoolean("openDL");
         if (openDL) {
             ft.replace(R.id.fragment_container, new DLFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
 
@@ -202,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             tvDLTabTitle.setVisibility(View.GONE);
             ft.replace(R.id.fragment_container, new BookingFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
 

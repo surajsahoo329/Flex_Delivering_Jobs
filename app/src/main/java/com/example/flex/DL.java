@@ -29,9 +29,6 @@ public class DL {
 
     }
 
-    public String getUserId() {
-        return userId;
-    }
 
     public String getUserMail() {
         return userMail;

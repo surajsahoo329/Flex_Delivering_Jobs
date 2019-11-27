@@ -35,8 +35,8 @@ public class EditFragment extends Fragment {
 
 
     static int updateFlag=0;
-    String id;
-    View parentLayout, parentHolder;
+    private String id;
+    private View parentLayout;
     private EditText etName, etPhone;
     private DatabaseReference usrRef, updateRef;
     private String checkEmail, uemail, updateName, updatePhone;
@@ -51,7 +51,7 @@ public class EditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        parentHolder=inflater.inflate(R.layout.fragment_edit, container, false);
+        View parentHolder=inflater.inflate(R.layout.fragment_edit, container, false);
 
         etName=parentHolder.findViewById(R.id.edName);
         etPhone=parentHolder.findViewById(R.id.edPhone);

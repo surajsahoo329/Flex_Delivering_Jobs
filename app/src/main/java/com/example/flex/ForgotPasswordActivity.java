@@ -32,10 +32,9 @@ import java.util.Objects;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-    EditText etEmail;
-    Button btnResetPassword;
-    TextView textView;
-    View parentLayout;
+    private EditText etEmail;
+    private TextView textView;
+    private View parentLayout;
     static int sentMailFlag = 0;
 
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
@@ -64,7 +63,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
 
         etEmail=findViewById(R.id.etEmail);
-        btnResetPassword=findViewById(R.id.btnChPass);
+        Button btnResetPassword=findViewById(R.id.btnChPass);
         parentLayout=findViewById(android.R.id.content);
         textView=findViewById(R.id.tvTryAgain);
 

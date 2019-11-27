@@ -28,12 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity implements ValueEventListener {
 
-    EditText etName,etEmail,etPhone,etPassword,etConfirmPassword;
-    Button btnSignUp;
-    TextView tvLogin;
-    FirebaseAuth auth;
-    DatabaseReference databaseUser, databaseFeedback, databaseSlot, databaseDL, databaseHistory;
-    View parentLayout;
+    private EditText etName, etEmail, etPhone, etPassword, etConfirmPassword;
+    private FirebaseAuth auth;
+    private DatabaseReference databaseUser, databaseFeedback, databaseSlot, databaseDL, databaseHistory;
+    private View parentLayout;
     static int registerFlag = 0;
 
     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
@@ -55,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
         etPhone=findViewById(R.id.etPhone);
         etPassword=findViewById(R.id.etPassword);
         etConfirmPassword=findViewById(R.id.etConfirmPassword);
-        btnSignUp=findViewById(R.id.btnProfile);
-        tvLogin=findViewById(R.id.tvLogin);
+        Button btnSignUp=findViewById(R.id.btnProfile);
+        TextView tvLogin=findViewById(R.id.tvLogin);
         auth = FirebaseAuth.getInstance();
         parentLayout = findViewById(android.R.id.content);
 
@@ -219,10 +217,10 @@ public class RegisterActivity extends AppCompatActivity implements ValueEventLis
     private void addSlot()
     {
         String usrMail = etEmail.getText().toString().trim();
-        String showDate="", showStartDate="", showEndDate="";
+        String showDate="", showStartDate="", showWorkHours="";
         String id = databaseSlot.push().getKey();
         int slotFlag = 0;
-        Slot slot = new Slot(usrMail,id,slotFlag,showDate,showStartDate,showEndDate);
+        Slot slot=new Slot(usrMail, id, slotFlag, showDate, showStartDate, showWorkHours);
         assert id != null;
         databaseSlot.child(id).setValue(slot);
 

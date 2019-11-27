@@ -10,35 +10,27 @@ public class Slot {
     private int slotFlag;
     private String showDate;
     private String showStartTime;
-    private String showEndTime;
-
+    private String showWorkHours;
 
     public Slot() {
+
     }
 
-    Slot(String userMail, String userId, int slotFlag, String showDate, String showStartTime, String showEndTime) {
+
+    Slot(String userMail, String userId, int slotFlag, String showDate, String showStartTime, String showWorkHours) {
 
         this.userMail=userMail;
         this.userId=userId;
         this.slotFlag=slotFlag;
         this.showDate=showDate;
         this.showStartTime=showStartTime;
-        this.showEndTime=showEndTime;
+        this.showWorkHours=showWorkHours;
 
     }
 
     public  String getUserMail(){ return  userMail; }
-    public  String getUserId(){
-        return  userId;
-    }
 
     public int getSlotFlag(){ return slotFlag; }
-
-    public String getShowDate() { return showDate; }
-
-    public String getShowStartTime() { return showStartTime; }
-
-    public String getShowEndTime() { return showEndTime; }
 
     @NonNull
     @Override
@@ -58,7 +50,7 @@ public class Slot {
         }
 
         String modTime = String.valueOf(modDateArr);
-        return modTime + ", " + showStartTime + " | " + showEndTime;
+        return modTime + ", " + showStartTime + " | " + showWorkHours;
     }
 
 

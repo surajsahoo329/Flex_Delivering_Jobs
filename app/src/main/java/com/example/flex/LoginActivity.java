@@ -24,11 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText etEmailPhone,etPassword;
-    Button btnLogin;
-    TextView tvForgotPassword, tvRegister, tvFont;
-    FirebaseAuth auth;
-    View parentLayout;
+    private EditText etEmailPhone, etPassword;
+    private FirebaseAuth auth;
+    private View parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +44,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         etEmailPhone=findViewById(R.id.etEmailPhone);
-        tvFont=findViewById(R.id.tvFont);
         etPassword=findViewById(R.id.etPassword);
-        btnLogin=findViewById(R.id.btnProfile);
-        tvForgotPassword=findViewById(R.id.tvForgotPassword);
-        tvRegister=findViewById(R.id.tvRegister);
+        Button btnLogin=findViewById(R.id.btnProfile);
+        TextView tvForgotPassword=findViewById(R.id.tvForgotPassword);
+        TextView tvRegister=findViewById(R.id.tvRegister);
         parentLayout = findViewById(android.R.id.content);
 
         auth = FirebaseAuth.getInstance();

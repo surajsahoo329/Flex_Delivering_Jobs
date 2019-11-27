@@ -11,8 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class FirstScreenActivity extends Activity {
 
-    Handler handler;
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -36,7 +35,7 @@ public class FirstScreenActivity extends Activity {
         canvas.drawRoundRect((new RectF(0,0,bm.getWidth(),bm.getHeight())),100,100,paint);
         imageView.setImageBitmap(ir);*/ //set circular image
 
-        handler=new Handler();
+        Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

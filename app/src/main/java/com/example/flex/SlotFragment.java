@@ -104,6 +104,7 @@ public class SlotFragment extends Fragment {
         historyListViewSlot.setVisibility(View.GONE);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -125,7 +126,7 @@ public class SlotFragment extends Fragment {
                             String id = ds.child("userId").getValue(String.class);
                             String date = ds.child("showDate").getValue(String.class);
                             String stTime = ds.child("showStartTime").getValue(String.class);
-                            String hours = ds.child("showEndTime").getValue(String.class);
+                            String hours=ds.child("showWorkHours").getValue(String.class);
 
                             @SuppressLint("SimpleDateFormat") SimpleDateFormat df=new SimpleDateFormat("dd-MMM-yyyy");
                             Date strDate = null;
@@ -243,7 +244,7 @@ public class SlotFragment extends Fragment {
                                                     uEmail = ds.child("userMail").getValue(String.class);
                                                     String dateHis = ds.child("showDate").getValue(String.class);
                                                     String timeHis = ds.child("showStartTime").getValue(String.class);
-                                                    String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                                    String hoursHis=ds.child("showWorkHours").getValue(String.class);
 
                                                     assert uEmail != null;
                                                     if(uEmail.equals(checkMail)) {
@@ -343,7 +344,7 @@ public class SlotFragment extends Fragment {
                                                     uEmail = ds.child("userMail").getValue(String.class);
                                                     String dateHis = ds.child("showDate").getValue(String.class);
                                                     String timeHis = ds.child("showStartTime").getValue(String.class);
-                                                    String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                                    String hoursHis=ds.child("showWorkHours").getValue(String.class);
 
                                                     assert uEmail != null;
                                                     if(uEmail.equals(checkMail)) {
@@ -408,7 +409,7 @@ public class SlotFragment extends Fragment {
                                                 uEmail = ds.child("userMail").getValue(String.class);
                                                 String dateHis = ds.child("showDate").getValue(String.class);
                                                 String timeHis = ds.child("showStartTime").getValue(String.class);
-                                                String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                                String hoursHis=ds.child("showWorkHours").getValue(String.class);
 
                                                 assert uEmail != null;
                                                 if(uEmail.equals(checkMail)) {
@@ -556,7 +557,7 @@ public class SlotFragment extends Fragment {
                                                     uEmail = ds.child("userMail").getValue(String.class);
                                                     String dateHis = ds.child("showDate").getValue(String.class);
                                                     String timeHis = ds.child("showStartTime").getValue(String.class);
-                                                    String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                                    String hoursHis=ds.child("showWorkHours").getValue(String.class);
 
                                                     assert uEmail != null;
                                                     if(uEmail.equals(checkMail)) {
@@ -656,7 +657,7 @@ public class SlotFragment extends Fragment {
                                                     uEmail = ds.child("userMail").getValue(String.class);
                                                     String dateHis = ds.child("showDate").getValue(String.class);
                                                     String timeHis = ds.child("showStartTime").getValue(String.class);
-                                                    String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                                    String hoursHis=ds.child("showWorkHours").getValue(String.class);
 
                                                     assert uEmail != null;
                                                     if(uEmail.equals(checkMail)) {
@@ -754,7 +755,7 @@ public class SlotFragment extends Fragment {
                                                 uEmail = ds.child("userMail").getValue(String.class);
                                                 String dateHis = ds.child("showDate").getValue(String.class);
                                                 String timeHis = ds.child("showStartTime").getValue(String.class);
-                                                String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                                String hoursHis=ds.child("showWorkHours").getValue(String.class);
                                                 int slotFlag  = ds.child("slotFlag").getValue(Integer.class);
 
                                                 assert uEmail != null;
@@ -814,7 +815,7 @@ public class SlotFragment extends Fragment {
                                         uEmail = ds.child("userMail").getValue(String.class);
                                         String dateHis = ds.child("showDate").getValue(String.class);
                                         String timeHis = ds.child("showStartTime").getValue(String.class);
-                                        String hoursHis = ds.child("showEndTime").getValue(String.class);
+                                        String hoursHis=ds.child("showWorkHours").getValue(String.class);
 
                                         assert uEmail != null;
                                         if(uEmail.equals(checkMail)) {

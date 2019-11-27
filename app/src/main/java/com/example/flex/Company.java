@@ -9,26 +9,28 @@ public class Company {
     private String timings;
     private String address;
 
-    public Company(int imageId, String company, String timings, String address) {
+    Company(int imageId, String company, String timings, String address) {
         this.imageId = imageId;
         this.company = company;
         this.timings = timings;
         this.address = address;
     }
-    public int getImageId() {
+
+    int getImageId() {
         return imageId;
     }
     public void setImageId(int imageId) {
         this.imageId = imageId;
     }
-    public String getCompany() {
+
+    String getCompany() {
         return company;
     }
     public void setCompany(String company) {
         this.company = company;
     }
 
-    public String getTimings()
+    String getTimings()
     {
         return timings;
     }
@@ -38,7 +40,7 @@ public class Company {
         this.timings = timings;
     }
 
-    public String getAddress() {
+    String getAddress() {
         return address;
     }
     public void setAddress(String address) {
