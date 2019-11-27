@@ -491,7 +491,7 @@ public class BookingFragment extends Fragment {
                                                                                                         case 2:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(2);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);
@@ -502,7 +502,7 @@ public class BookingFragment extends Fragment {
                                                                                                         case 3:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(3);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);
@@ -513,7 +513,7 @@ public class BookingFragment extends Fragment {
                                                                                                         case 4:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(4);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);
@@ -524,7 +524,7 @@ public class BookingFragment extends Fragment {
                                                                                                         case 5:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(5);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);
@@ -535,7 +535,7 @@ public class BookingFragment extends Fragment {
                                                                                                         case 6:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(6);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);
@@ -546,7 +546,7 @@ public class BookingFragment extends Fragment {
                                                                                                         case 7:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(7);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);
@@ -557,7 +557,7 @@ public class BookingFragment extends Fragment {
                                                                                                         default:
                                                                                                             sldbRef.child(id).child("showDate").setValue(date);
                                                                                                             sldbRef.child(id).child("showStartTime").setValue(strTime);
-                                                                                                            sldbRef.child(id).child("showEndTime").setValue(strHours);
+                                                                                                            sldbRef.child(id).child("showWorkHours").setValue(strHours);
                                                                                                             sldbRef.child(id).child("slotFlag").setValue(1);
                                                                                                             intent.putExtra("company", companyFlag);
                                                                                                             intent.putExtra("date", date);

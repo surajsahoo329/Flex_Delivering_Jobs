@@ -15,6 +15,10 @@ public class DL {
     //Constructor
     //Function Overloading(Look it up)
 
+    public DL() {
+
+    }
+
     //Another constructor to initialize our variables
     DL(String userId,String userMail, String userName, String LicenseNumber, String userDOB, String userAddress, String LicenseIssueDate,String LicenseExpiryDate, int userDLFlag) {
         this.userId = userId;
@@ -29,6 +33,9 @@ public class DL {
 
     }
 
+    public String getUserId() {
+        return userId;
+    }
 
     public String getUserMail() {
         return userMail;
@@ -46,9 +53,11 @@ public class DL {
         return userDOB;
     }
 
-    public String getUserAddress() { return userAddress; }
+    public String getUserAddress() {
+        return userAddress;
+    }
 
-    public String getLicenseIssueDate(){
+    public String getLicenseIssueDate() {
         return LicenseIssueDate;
     }
 
@@ -56,6 +65,10 @@ public class DL {
         return LicenseExpiryDate;
     }
 
-    public int getUserDLFlag() { return userDLFlag; }
+    public int getUserDLFlag() {
+        return userDLFlag;
+    }
+
+
 
 }

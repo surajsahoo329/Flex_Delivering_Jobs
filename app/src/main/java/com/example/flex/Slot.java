@@ -28,9 +28,32 @@ public class Slot {
 
     }
 
-    public  String getUserMail(){ return  userMail; }
+    public String getUserMail() {
+        return userMail;
+    }
 
-    public int getSlotFlag(){ return slotFlag; }
+    public String getUserId() {
+        return userId;
+    }
+
+    public int getSlotFlag() {
+        return slotFlag;
+    }
+
+    public String getShowDate() {
+        return showDate;
+    }
+
+    public String getShowStartTime() {
+        return showStartTime;
+    }
+
+    public String getShowWorkHours() {
+        return showWorkHours;
+    }
+
+
+
 
     @NonNull
     @Override
