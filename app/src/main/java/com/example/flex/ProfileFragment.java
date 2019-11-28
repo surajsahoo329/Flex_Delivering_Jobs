@@ -52,7 +52,6 @@ public class ProfileFragment extends Fragment {
     private StorageReference mStorageReference;
     private DatabaseReference mDatabaseReference;
     private ProgressDialog pd;
-    private final static int PICK_PDF_CODE=2342;
     private static final int PICK_FROM_GALLERY=1;
     private final int PICK_IMAGE_REQUEST=71;
     private Uri filePath;
@@ -313,18 +312,6 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         //when the user choses the file
 
-        if (requestCode == PICK_PDF_CODE && resultCode == MainActivity.RESULT_OK && data != null && data.getData() != null) {
-            //if a file is selected
-            if (data.getData() != null) {
-                //uploading the file
-                uploadFile(data.getData());
-            }else{
-
-                Toast.makeText(refActivity, "No file chosen", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == MainActivity.RESULT_OK && data !=null && data.getData() != null)
         {
             filePath = data.getData();
@@ -345,92 +332,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void uploadFile(Uri data) {
-
-        pd = ProgressDialog.show(refActivity,"Uploading","Please wait...",true);
-        StorageReference sRef = mStorageReference.child(checkEmail+"/userDL.pdf");
-
-        sRef.putFile(data)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        pd.dismiss();
-                        Snackbar.make(parentLayout,"File uploaded successfully", Snackbar.LENGTH_LONG)
-                                .setDuration(3000)
-                                .setAction("Close", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                    }
-                                })
-                                .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                                .show();
-                        final DatabaseReference usrRef= FirebaseDatabase.getInstance().getReference().child("User");
-
-                        ValueEventListener userListener = new ValueEventListener() {
-
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                                    uEmail = ds.child("userMail").getValue(String.class);
-
-                                    assert uEmail != null;
-                                    if (uEmail.equals(checkEmail)) {
-
-                                        String id = ds.child("userId").getValue(String.class);
-                                        assert id != null;
-                                        usrRef.child(id).child("userDLFlag").setValue(1);
-                                        break;
-                                    }
-
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                Toast.makeText(refActivity, databaseError.getCode(),Toast.LENGTH_LONG).show();
-
-                            }
-                        };
-
-                        usrRef.addListenerForSingleValueEvent(userListener);
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-
-                        pd.dismiss();
-                        Snackbar.make(parentLayout,"Upload failed", Snackbar.LENGTH_LONG)
-                                .setDuration(3000)
-                                .setAction("Close", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                    }
-                                })
-                                .setActionTextColor(getResources().getColor(android.R.color.background_light))
-                                .show();
-
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @SuppressWarnings("VisibleForTests")
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                        progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                        pd.setMessage("Uploaded "+ (int)progress+"%");
-
-                    }
-                });
-
-    }
 
     private void uploadImage() {
 

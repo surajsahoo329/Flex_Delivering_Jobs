@@ -53,7 +53,7 @@ public class DLFragment extends Fragment {
     private StorageReference mStorageReference;
     private DatabaseReference dbRef, usrRef, dlRef;
     private ProgressDialog pd;
-    private final static int PICK_PDF_CODE=2342;
+    private final static int PICK_DL_CODE=2342;
     private int isUploadedDLFlag=0;
     private double progress;
     private String uemail, checkEmail="",monthStr="";
@@ -61,7 +61,6 @@ public class DLFragment extends Fragment {
     private DatePickerDialog datePickerDialog;
     private EditText etDLName, etDLNumber, etDOB, etAddress, etIssueDate, etExpiryDate;
     private TextView tvIDOB, tvIDate, tvIEDate;
-    private int dlFlag=0;
 
     public DLFragment()
     {
@@ -242,9 +241,11 @@ public class DLFragment extends Fragment {
         ivUploadDL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPDF();
+                getDL();
             }
+
         });
+
 
         ivDownloadDL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -619,7 +620,7 @@ public class DLFragment extends Fragment {
 
     }
 
-    private void getPDF() {
+    private void getDL() {
         //for greater than lollipop versions we need the permissions asked on runtime
         //so if the permission is not available user will go to the screen to allow storage permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(refActivity,
@@ -635,7 +636,7 @@ public class DLFragment extends Fragment {
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Choose your file  "), PICK_PDF_CODE);
+        startActivityForResult(Intent.createChooser(intent, "Choose your file  "), PICK_DL_CODE);
     }
 
     @Override
@@ -643,7 +644,7 @@ public class DLFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         //when the user choses the file
 
-        if (requestCode == PICK_PDF_CODE && resultCode == MainActivity.RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == PICK_DL_CODE && resultCode == MainActivity.RESULT_OK && data != null && data.getData() != null) {
             //if a file is selected
             if (data.getData() != null) {
                 //uploading the file

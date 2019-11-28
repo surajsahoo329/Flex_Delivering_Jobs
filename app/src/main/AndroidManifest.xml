@@ -17,6 +17,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
+
         <activity
             android:name=".BookingFailedActivity"
             android:theme="@style/AppTheme" />
